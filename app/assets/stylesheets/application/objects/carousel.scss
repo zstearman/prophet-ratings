@@ -1,0 +1,15 @@
+#homeCarousel {
+  .carousel-inner>.item {
+      position: relative;
+      max-height: 600px;
+  }
+  .carousel-caption {
+      position: absolute;
+      top: 5%;
+      left: 10%;
+  }
+  h1 {
+    font-size: 6em;
+    text-align: left;
+  }
+}
