@@ -8,6 +8,20 @@
   </head>
   
   <body>
-    <%= yield %>
+    <header class="navbar navbar-fixed-top navbar-inverse">
+      <div class="container">
+        <%= link_to "Prophet Ratings", "#", id: "logo" %>
+        <nav>
+          <ul class="nav navbar-nav navbar-right">
+            <li><%= link_to "Home", '# '%></li>
+            <li><%= link_to "Sign Up", '# '%></li>
+            <li><%= link_to "Log In", '# '%></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <div class="container">
+      <%= yield %> 
+    </div>
   </body>
 </html>
