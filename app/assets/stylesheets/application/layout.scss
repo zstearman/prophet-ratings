@@ -4,7 +4,7 @@
 /* universal */
 
 body {
-  padding-top: 60px;
+  padding-top: 80px;
 }
 
 section {
@@ -26,6 +26,24 @@ textarea {
 
 
 /* header */
+
+.navbar-fixed-top {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.navbar-right li {
+  padding-top: 10px;
+  a {
+    padding: 15px 25px;
+    font-weight: bold;
+    color: #66666d;
+    &:hover {
+      color: #0a0d5e;
+    }
+  }
+}
 
 #logo {
   float: left;
