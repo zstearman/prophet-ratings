@@ -11,13 +11,12 @@
     <%= csrf_meta_tags %>
   </head>
   <body>
-    <header class="navbar navbar-fixed-top navbar-inverse">
+    <header class="navbar navbar-fixed-top navbar-toggleable-md">
       <div class="container">
-        <%= link_to image_tag("Prophet_Logo.jpg", alt: "Prophet logo", width: 200),
+        <%= link_to image_tag("Prophet_Logo.jpg", alt: "Prophet logo", width: 200 ),
         root_url %>
         <nav>
           <ul class="nav navbar-nav navbar-right">
-            <li><%= link_to "Home", '# '%></li>
             <li><%= link_to "Sign Up", '# '%></li>
             <li><%= link_to "Log In", '# '%></li>
           </ul>
