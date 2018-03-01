@@ -33,4 +33,4 @@ $ rails server
 ```
 
 For more information, see visit us on twitter:
-[*@prophetbball*](http://www.twitter.com/prophetbball).
+[*@prophetcbb*](http://www.twitter.com/prophetcbb).
