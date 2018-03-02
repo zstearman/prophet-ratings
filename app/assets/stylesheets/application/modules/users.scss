@@ -1,0 +1,18 @@
+/* New Account*/
+
+#account-header {
+  background: linear-gradient(45deg,#0a0d5e 0%,#9d9ebe 100%);
+  a {
+    color: #fff;
+    &:hover {
+      background: none;
+      color: #dadada;
+    }
+  }
+}
+
+#account-setup {
+  h1 {
+    text-align: center;
+  }
+}
