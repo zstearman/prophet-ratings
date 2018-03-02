@@ -1,6 +1,10 @@
 #homeCarousel {
-  .carousel-inner>.item {
-    max-height: 600px;
+  .carousel-inner {
+    background-color: #000;
+    .item {
+      max-height: 600px;
+      background-color: #000;
+    }
   }
   .carousel-caption {
       position: absolute;
