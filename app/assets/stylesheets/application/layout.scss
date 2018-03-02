@@ -31,6 +31,18 @@ textarea {
   padding-top: 10px;
   padding-bottom: 10px;
   border-bottom: 1px solid #eaeaea;
+  background-color: #fff;
+  #signup {
+    padding-right: 20px;
+    a{
+      background: linear-gradient(45deg,#0a0d5e 0%,#9d9ebe 100%);
+      color: #fff;
+      &:hover {
+        margin-top: -5px;
+        box-shadow: 1px 3px 2px grey;
+      }
+    }
+  }
 }
 
 .navbar-right li {
@@ -40,7 +52,8 @@ textarea {
     font-weight: bold;
     color: #66666d;
     &:hover {
-      color: #0a0d5e;
+      color: #111;
+      background-color: #fff;
     }
   }
 }
