@@ -5,6 +5,9 @@
     background-color: #000;
     .item {
       max-height: 600px;
+      img {
+        width: 100%;
+      }
     }
   }
   .carousel-caption {
