@@ -1,12 +1,12 @@
 #homeCarousel {
-  width: 85%;
+  max-height: 600px;
   margin: auto;
   .carousel-inner {
     background-color: #000;
     .item {
-      max-height: 600px;
       img {
         width: 100%;
+        max-height: 600px;
       }
     }
   }
