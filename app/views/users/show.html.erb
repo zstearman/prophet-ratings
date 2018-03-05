@@ -1,8 +1,22 @@
 <% provide(:title, "My Account") %>
 <h1>My Account</h1>
-<div class="account-sidebox">
-  <h2>Account Info</h2>
-  <%= link_to 'Update', '#' %>
-  <h3>Name</h3>
-  <%= @user.first_name + " " + @user.last_name %>
+<div class="col-xs-12">
+     <div class="account-sidebox col-md-6">
+       <h2>Account Info</h2>
+       <%= link_to 'Update', '#' %>
+       <p class="user-label">Name</p>
+       <p><%= @user.first_name + " " + @user.last_name %></p>
+       <p class="user-label">Email</p>
+       <p><%= @user.email %></p>
+       <p class="user-label">Password</p>
+       <p class="user-label">Favorite Team</p>
+     </div>
+     <div class="account-sidebox col-md-6">
+       <h2>Subscription Info</h2>
+       <%= link_to 'Update', '#' %>
+       <p class="user-label">Plan Type</p>
+       <p class="user-label">Expiration Date</p>
+       <p class="user-label">Payment Info</p>
+       <p class="user-label">Referral</p>
+     </div>
 </div>
