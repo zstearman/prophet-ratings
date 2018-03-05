@@ -1,2 +1,8 @@
 <% provide(:title, "My Account") %>
-<%= @user.first_name %>, <%= @user.email %>
+<h1>My Account</h1>
+<div class="account-sidebox">
+  <h2>Account Info</h2>
+  <%= link_to 'Update', '#' %>
+  <h3>Name</h3>
+  <%= @user.first_name + " " + @user.last_name %>
+</div>
