@@ -4,7 +4,7 @@ class UserTest < ActiveSupport::TestCase
 
   def setup
     @user = User.new(first_name: "Example", last_name: "User", email: "user@example.com",
-                     password: "foobar", password_confirmation: "foobar")
+                     password: "foobar", password_confirmation: "foobar", expiration_date: "11/11/2021")
   end
   
   test "should be valid" do
