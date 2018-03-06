@@ -1,11 +1,15 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  first_name: MyString
-  last_name: MyString
-  email: MyString@mail.com
+zach:
+  first_name: Zach
+  last_name: Stearman
+  email: zstearman@prophetratings.com
+  password_digest: <%= User.digest('password') %>
+  expiration_date: <%= '11/11/2019'.to_date %>
 
 two:
   first_name: MyString2
   last_name: MyString2
   email: MyString2@email.com
+  password_digest: <%= User.digest('password') %>
+  expiration_date: <%= '11/11/2019'.to_date %>
