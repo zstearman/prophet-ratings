@@ -24,6 +24,8 @@
         
         <%= f.label :favorite_team %>
         
+        <%= f.hidden_field :account_level, :value => params[:plan_id] %>
+        
         <%= f.submit "Continue", class: "faded-button" %>
       <% end %>
     </div>
