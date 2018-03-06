@@ -10,7 +10,11 @@
   <% if controller_name == "users" && action_name == "new" %>
     <%= render 'layouts/header/newaccount' %>
   <% else %>
-    <%= render 'layouts/header/loggedout' %>
+    <% if logged_in? %>
+      <%= render 'layouts/header/loggedin' %>
+    <% else %>
+      <%= render 'layouts/header/loggedout' %>
+    <% end %>
   <% end %>
   <body>
     <div class="container">
