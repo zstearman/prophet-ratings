@@ -8,10 +8,11 @@ class UsersController < ApplicationController
   end
   
   def create
-    @user = User.new(user_params.merge(:expiration_date => Date.today,
+    @user = User.new(user_params.merge(:expiration_date => Date.today + 7.days,
                                        :account_level => params[:plan_id]))
     if @user.save
-      # Handle a successful save.
+      flash[:success] = "Thank you for signing up for Prophet Ratings!"
+      redirect_to @user
     else
       render 'new'
     end
