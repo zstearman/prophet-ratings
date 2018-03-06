@@ -23,5 +23,10 @@ class StaticPagesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
     assert_select "title", "Contact | Prophet Ratings - NCAA Basketball Predictive Analytics"
   end
-
+  
+  test "should get plan page" do
+    get plan_path
+    assert_response :success
+    assert_select "title", "Pick Your Plan | Prophet Ratings - NCAA Basketball Predictive Analytics"
+  end
 end

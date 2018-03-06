@@ -16,9 +16,12 @@
     text-align: center;
     padding-top: 10px;
   }
+  .faded-button {
+    height: 30px;
+    padding: 6px 12px;
+    &:hover {
+      color: #dadada;
+    }
+  }
 }
 
-.faded-button {
-  height: 30px;
-  padding: 6px 12px;
-}
