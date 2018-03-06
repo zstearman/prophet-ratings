@@ -43,25 +43,5 @@
     <span class="sr-only">Next</span>
   </a>
 </div>
-<div id="pricing">
-  <h1>Pick Your Plan</h1>
-  <div id="simple-plan" class="col-md-4 col-md-offset-1 sub-plan">
-    <h2>Basic Plan</h2>
-    <h3>$9.99/year</h3>
-    <%= link_to "Select Plan", signup_path(:plan_id => "1" ) , { :class=>'faded-button plan-button' }%>
-    <p>-Access to Complete Prophet Rankings</p>
-    <p>-Team by Team Analytics</p>
-    <p>-Advanced Player Statistics</p>
-    <p>-Individual Game Predictions</p>
-  </div>
-  <div id="betting-plan" class="col-md-4 col-md-offset-2 sub-plan">
-    <h2>Sports Betting Plan</h2>
-    <h3>$49.99/year</h3>
-    <%= link_to "Select Plan", signup_path(:plan_id => "2" ), { :class=>'faded-button plan-button' }%>
-    <p>-All Basic Plan Features</p>
-    <p>-Organized Betting Predictions</p>
-    <p>-Historical Betting Performance</p>
-    <p>-March Madness Simulator</p>
-  </div>
-</div>
+<%= render 'layouts/objects/plans' %>
 <%= render 'layouts/objects/carousel' %>
