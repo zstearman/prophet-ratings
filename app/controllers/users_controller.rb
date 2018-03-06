@@ -11,6 +11,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params.merge( :expiration_date => Date.today + 7.days))
     if @user.save
       log_in @user
+      remember user
       flash[:success] = "Thank you for signing up for Prophet Ratings!"
       redirect_to @user
     else
