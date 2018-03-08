@@ -1,0 +1,24 @@
+<%= form_for(@user, url: signup_path) do |f| %>
+  <%= render 'layouts/objects/error_messages' %>
+  
+  <%= f.label :first_name, "First Name" %>
+  <%= f.text_field :first_name, class: 'form-control' %>
+  
+  <%= f.label :last_name, "Last Name" %>
+  <%= f.text_field :last_name, class: 'form-control' %>
+  
+  <%= f.label :email %>
+  <%= f.text_field :email, class: 'form-control' %>
+  
+  <%= f.label :password %>
+  <%= f.password_field :password, class: 'form-control' %>
+  
+  <%= f.label :password_confirmation, "Password Confirmation" %>
+  <%= f.password_field :password_confirmation, class: 'form-control' %>
+  
+  <%= f.label :favorite_team %>
+  
+  <%= f.hidden_field :account_level, :value => params[:plan_id].blank? ? nil : params[:plan_id] %>
+  
+  <%= f.submit yield(:button_text), class: "faded-button" %>
+<% end %>
