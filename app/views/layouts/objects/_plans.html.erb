@@ -17,9 +17,9 @@
     <h2>Sports Betting Plan</h2>
     <h3>$49.99/year</h3>
     <% if logged_in? %>
-      <%= link_to "Select Plan", edit_user_path(current_user, :plan_id => "1" ) , { :class=>'faded-button plan-button' }%>
+      <%= link_to "Select Plan", edit_user_path(current_user, :plan_id => "2" ) , { :class=>'faded-button plan-button' }%>
     <% else %>
-      <%= link_to "Select Plan", signup_path(:plan_id => "1" ) , { :class=>'faded-button plan-button' }%>
+      <%= link_to "Select Plan", signup_path(:plan_id => "2" ) , { :class=>'faded-button plan-button' }%>
     <% end %>
     <p>-All Basic Plan Features</p>
     <p>-Organized Betting Predictions</p>
