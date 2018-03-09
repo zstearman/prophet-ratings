@@ -8,8 +8,8 @@ zach:
   expiration_date: <%= '11/11/2019'.to_date %>
 
 two:
-  first_name: MyString2
-  last_name: MyString2
-  email: MyString2@email.com
+  first_name: MyString
+  last_name: MyString
+  email: mystring@gmail.com
   password_digest: <%= User.digest('password') %>
   expiration_date: <%= '11/11/2019'.to_date %>
