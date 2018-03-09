@@ -7,6 +7,8 @@ zach:
   password_digest: <%= User.digest('password') %>
   expiration_date: <%= '11/11/2019'.to_date %>
   admin: true
+  activated: true
+  activated_at: <%= Time.zone.now %>
 
 two:
   first_name: MyString
@@ -14,6 +16,8 @@ two:
   email: mystring@gmail.com
   password_digest: <%= User.digest('password') %>
   expiration_date: <%= '11/11/2019'.to_date %>
+  activated: true
+  activated_at: <%= Time.zone.now %>
   
 <% 30.times do |n| %>
 user_<%= n %>:
@@ -22,4 +26,6 @@ user_<%= n %>:
   email: <%= "user-#{n}@example.com" %>
   password_digest: <%= User.digest('password') %>
   expiration_date: <%= '11/11/2019'.to_date %>
+  activated: true
+  activated_at: <%= Time.zone.now %>
 <% end %>

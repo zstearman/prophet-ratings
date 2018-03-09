@@ -1,0 +1,5 @@
+<%= @greeting %>
+
+Welcome to Prophet Ratings! We hope that you will enjoy your time exploring the app. Please click on the link below to activate your account:
+
+<%= edit_account_activation_url(@user.activation_token, email: @user.email) %>
