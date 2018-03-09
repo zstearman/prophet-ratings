@@ -12,10 +12,14 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
   
+  test "should redirect index when not logged in" do
+    get users_path
+    assert_redirected_to root_url
+  end
+  
   # Login not working because we are testing users controller?
   # test "should redirect edit when logged in as wrong user" do
-  #   post login_path, params: { session: { email: @other_user.email,
-  #                                         password: 'password' } }
+  #   log_in_as(@other_user)
   #   assert_redirected_to @other_user
   #   get edit_user_path(@user)
   #   #assert flash.empty?
