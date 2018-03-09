@@ -19,7 +19,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params.merge( :expiration_date => Date.today + 7.days))
     if @user.save
-      UserMailer.account_activation(@user).deliver_now
+      @user.send_activation_email
       log_in @user
       flash[:success] = "Thank you for signing up for Prophet Ratings! Please check your email to fully activate your account."
       redirect_to @user
