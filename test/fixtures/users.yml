@@ -6,6 +6,7 @@ zach:
   email: zstearman@prophetratings.com
   password_digest: <%= User.digest('password') %>
   expiration_date: <%= '11/11/2019'.to_date %>
+  admin: true
 
 two:
   first_name: MyString
@@ -13,3 +14,12 @@ two:
   email: mystring@gmail.com
   password_digest: <%= User.digest('password') %>
   expiration_date: <%= '11/11/2019'.to_date %>
+  
+<% 30.times do |n| %>
+user_<%= n %>:
+  first_name:  <%= "User #{n}" %>
+  last_name: <%= "Last #{n}" %>
+  email: <%= "user-#{n}@example.com" %>
+  password_digest: <%= User.digest('password') %>
+  expiration_date: <%= '11/11/2019'.to_date %>
+<% end %>
