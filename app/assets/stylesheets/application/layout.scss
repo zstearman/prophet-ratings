@@ -6,8 +6,10 @@
 body {
   padding-top: 90px;
   background-color: #eaeaea;
-  .container{
-    width: 80%;
+  @media(min-width: $screen-md-min){
+    .container{
+      width: 80%;
+    }
   }
 }
 

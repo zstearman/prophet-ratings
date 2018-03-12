@@ -13,12 +13,16 @@
     text-align: center;
   }
   .sub-plan{
+    margin: 0px 40px 20px;
     border-style: solid;
     border-width: 1px;
     border-radius: 5px;
     border-color: #66666d;
     background-color: white;
     text-align: center;
+    @media(min-width: $screen-md-min){
+      margin: 0;
+    }
     .plan-button {
       padding: 15px 25px;
       font-size: 1.5em;
@@ -32,11 +36,13 @@
       }
     }
   }
-  #simple-plan{
-    margin-left: 13%;
-  }
-  #betting-plan{
-    margin-left: 8.33%;
+  @media(min-width: $screen-md-min){
+    #simple-plan{
+      margin-left: 13%;
+    }
+    #betting-plan{
+      margin-left: 8.33%;
+    }
   }
 }
 
