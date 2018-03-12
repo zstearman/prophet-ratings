@@ -9,6 +9,7 @@ zach:
   admin: true
   activated: true
   activated_at: <%= Time.zone.now %>
+  team_id: 1
 
 two:
   first_name: MyString

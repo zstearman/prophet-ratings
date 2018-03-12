@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+sooners:
+  key: OU
+  active: true
+  school: Oklahoma
+  name: Sooners
+  ap_rank: 1
+  team_logo_url: https://s3-us-west-2.amazonaws.com/static.fantasydata.com/logos/ncaa/113.png
+
+two:
+  key: MyString
+  active: false
+  school: MyString
+  name: MyString
+  ap_rank: 1
+  team_logo_url: MyString
