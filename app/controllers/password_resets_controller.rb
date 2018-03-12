@@ -49,6 +49,8 @@ class PasswordResetsController < ApplicationController
     def valid_user
       unless (@user && @user.activated? &&
               @user.authenticated?(:reset, params[:id]))
+      flash[:danger] = "User email has not yet been verified. Please contact
+      Prophet Ratings support."
       redirect_to root_url
       end
     end
