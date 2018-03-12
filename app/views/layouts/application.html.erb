@@ -12,7 +12,11 @@
   <% if controller_name == "users" && action_name == "new" %>
     <%= render 'layouts/header/newaccount' %>
   <% elsif controller_name == "static_pages" && action_name == "plan" %>
-    <%= render 'layouts/header/newaccount' %>
+    <% if !logged_in? %>
+      <%= render 'layouts/header/newaccount' %>
+    <% else %>
+      <%= render 'layouts/header/login' %>
+    <% end %>
   <% elsif controller_name == "sessions" && action_name == "new" %>
     <%= render 'layouts/header/login' %>
   <% elsif controller_name == "sessions" && action_name == "create" %>
