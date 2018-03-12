@@ -10,7 +10,8 @@
        <p><%= @user.email %></p>
        <p class="user-label">Password</p>
        <p class="user-label">Favorite Team</p>
-       <p><%= @user.team.first.school %></p>
+       <p><%= @user.team.first.school if @user.team.first %></p>
+       <%= image_tag(@user.team.first.team_logo_url, width: "50")  if @user.team.first %>
      </div>
      <div class="account-sidebox col-md-6">
        <h2>Subscription Info</h2>

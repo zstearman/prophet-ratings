@@ -1,0 +1,24 @@
+<h1 class="center">Team Rankings</h1>
+
+<table class="table table-sm">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">School</th>
+      <th scope="col">Rank</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% x = 0 %>
+    <% @teams.each do |team| %>
+      <tr>
+        <% x = x + 1 %>
+        <th><%= x %></th>
+        <td><%= team.school %></td>
+        <td><%= team.ap_rank %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+

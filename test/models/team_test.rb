@@ -9,13 +9,13 @@ class TeamTest < ActiveSupport::TestCase
                       account_level: "1",
                       expiration_date: "31/08/2019", 
                       password: "password",
-                      password_confirmation: "password", 
-                      team_id: @team.id )
+                      password_confirmation: "password" )
   end
   
   test "should be valid" do
     assert @user.valid?
-    assert_equal @user.team.school, "Oklahoma"
+    @user.team << @team
+    assert_equal @user.team.first.school, "Oklahoma"
   end
   
 end

@@ -12,8 +12,7 @@
       </div>
       <div class="collapse navbar-collapse" id="loggedinNav">
         <ul class="nav navbar-nav navbar-right">
-          <li><%= link_to "Rankings", '# '%></li>
-          <li><%= link_to "Teams", '# '%></li>
+          <li><%= link_to "Rankings", rankings_path %></li>
           <li><%= link_to "Predictions", '# '%></li>
           <li><%= link_to "Tourney Simulator", '# '%></li>
           <% if current_user.admin? %>
