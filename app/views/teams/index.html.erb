@@ -5,18 +5,22 @@
     <tr>
       <th scope="col">#</th>
       <th scope="col">School</th>
+      <th scope="col">Name</th>
       <th scope="col">Rank</th>
     </tr>
   </thead>
   <tbody>
     <% x = 0 %>
     <% @teams.each do |team| %>
-      <tr>
-        <% x = x + 1 %>
-        <th><%= x %></th>
-        <td><%= team.school %></td>
-        <td><%= team.ap_rank %></td>
-      </tr>
+      <% if team.active? %>
+        <tr>
+          <% x = x + 1 %>
+          <th><%= x %></th>
+          <td><%= link_to(team.school, team) %></td>
+          <td><%= team.name %></td>
+          <td><%= team.ap_rank %></td>
+        </tr>
+      <% end %>
     <% end %>
   </tbody>
 </table>
