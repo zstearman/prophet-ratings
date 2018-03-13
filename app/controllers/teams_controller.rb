@@ -2,6 +2,7 @@ class TeamsController < ApplicationController
   before_action :admin_user, only: [:new, :edit, :create, :update, :destroy]
   
   def new
+    @team = Team.new()
   end
 
   def edit

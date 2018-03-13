@@ -1,0 +1,23 @@
+<%= form_for(@team) do |f| %>
+  <%= render 'layouts/objects/team_errors' %>
+  
+  <%= f.label :school %>
+  <%= f.text_field :school, class: 'form-control' %>
+  
+  <%= f.label :name, "Nickname" %>
+  <%= f.text_field :name, class: 'form-control' %>
+  
+  <%= f.label :conference %>
+  <%= f.text_field :team_logo_url, class: 'form-control' %>
+  
+  <%= f.label :ap_rank, "AP Rank" %>
+  <%= f.text_field :ap_rank, class: 'form-control' %>
+  
+  <%= f.label :team_logo_url, "Logo URL" %>
+  <%= f.text_field :team_logo_url, class: 'form-control' %>
+  
+  <%= f.label :active, "Active?" %>
+  <%= f.check_box :active %>
+  
+  <%= f.submit yield(:button_text), class: "faded-button" %>
+<% end %>
