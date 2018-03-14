@@ -1,6 +1,5 @@
 class User < ApplicationRecord
   attr_accessor :remember_token, :activation_token, :reset_token
-  has_and_belongs_to_many :team
   before_save :downcase_email
   before_create :create_activation_digest
   validates :first_name, presence: true, length: {maximum: 30} 
@@ -61,10 +60,6 @@ class User < ApplicationRecord
   
   def password_reset_expired?
     reset_sent_at < 2.hours.ago
-  end
-  
-  def favorite_team
-    team_ids << team
   end
   
   private

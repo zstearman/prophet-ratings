@@ -10,8 +10,9 @@
        <p><%= @user.email %></p>
        <p class="user-label">Password</p>
        <p class="user-label">Favorite Team</p>
-       <p><%= @user.team.first.school if @user.team.first %></p>
-       <%= image_tag(@user.team.first.team_logo_url, width: "50")  if @user.team.first %>
+       <% @team = Team.find_by(id: @user.team_id) %>
+       <p><%= @team.school if @team %></p>
+       <%= image_tag(@team.team_logo_url, width: "50")  if @team %>
      </div>
      <div class="account-sidebox col-md-6">
        <h2>Subscription Info</h2>

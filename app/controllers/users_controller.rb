@@ -58,7 +58,8 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit(:first_name, :last_name, :email,
                                    :password, :password_confirmation,
-                                   :account_level, :expiration_date)
+                                   :account_level, :expiration_date,
+                                   :team_id)
     end
     
     def logged_in_user

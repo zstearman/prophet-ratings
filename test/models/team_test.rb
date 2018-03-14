@@ -14,8 +14,8 @@ class TeamTest < ActiveSupport::TestCase
   
   test "should be valid" do
     assert @user.valid?
-    @user.team << @team
-    assert_equal @user.team.first.school, "Oklahoma"
+    @user.team_id = @team.id
+    assert_equal Team.find(@user.team_id).school , "Oklahoma"
   end
   
 end

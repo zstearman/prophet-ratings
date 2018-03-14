@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180312203102) do
+ActiveRecord::Schema.define(version: 20180314052250) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,12 +25,6 @@ ActiveRecord::Schema.define(version: 20180312203102) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["school"], name: "index_teams_on_school"
-  end
-
-  create_table "teams_users", id: false, force: :cascade do |t|
-    t.bigint "team_id", null: false
-    t.bigint "user_id", null: false
-    t.index ["team_id", "user_id"], name: "index_teams_users_on_team_id_and_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -49,6 +43,7 @@ ActiveRecord::Schema.define(version: 20180312203102) do
     t.datetime "activated_at"
     t.string "reset_digest"
     t.datetime "reset_sent_at"
+    t.integer "team_id"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
