@@ -1,0 +1,32 @@
+<h1 class="center">Top 25</h1>
+
+<table class="table table-sm">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">AP Rank</th> 
+      <th scope="col">School</th>
+      <th scope="col">Wins</th>
+      <th scope="col">Losses</th>
+      <th scope="col">Conf Wins</th>
+      <th scope="col">Conf Losses</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% x = 0 %>
+    <% @team_seasons.each do |season| %>
+      <% if !season.team.ap_rank.nil? %>
+        <tr>
+          <% x = x + 1 %>
+          <th><%= x %></th>
+          <td><%= season.team.ap_rank %></td>
+          <td><%= link_to(season.team.school, season.team) %></td>
+          <td><%= season.wins %></td>
+          <td><%= season.losses %></td>
+          <td><%= season.conference_wins %></td>
+          <td><%= season.conference_losses %></td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
