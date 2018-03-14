@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  wins: 1
+  losses: 1
+  conference_wins: 1
+  conference_losses: MyString
+  integer: MyString
+  possessions: 9.99
+
+two:
+  wins: 1
+  losses: 1
+  conference_wins: 1
+  conference_losses: MyString
+  integer: MyString
+  possessions: 9.99

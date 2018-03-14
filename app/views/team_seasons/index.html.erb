@@ -1,0 +1,28 @@
+<h1 class="center">Team List</h1>
+
+<table class="table table-sm">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">school</th>
+      <th scope="col">wins</th>
+      <th scope="col">losses</th>
+      <th scope="col">conference wins</th>
+      <th scope="col">conference losses</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% x = 0 %>
+    <% @team_seasons.each do |season| %>
+      <tr>
+        <% x = x + 1 %>
+        <th><%= x %></th>
+        <td><%= link_to(season.team.school, season.team) %></td>
+        <td><%= season.wins %></td>
+        <td><%= season.losses %></td>
+        <td><%= season.conference_wins %></td>
+        <td><%= season.conference_losses %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
