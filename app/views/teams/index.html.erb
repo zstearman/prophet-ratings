@@ -1,9 +1,5 @@
 <h1 class="center">Team Rankings</h1>
 
-<% if current_user.admin? %>
-  <%= link_to "Add Team", new_team_path, { :class=>'faded-button', :id => 'add_team_button' } %>
-<% end %>
-
 <table class="table table-sm">
   <thead>
     <tr>
@@ -11,6 +7,9 @@
       <th scope="col">School</th>
       <th scope="col">Name</th>
       <th scope="col">Rank</th>
+      <% if current_user.admin? %>
+        <th scope="col">Admin</th>
+      <% end %>
     </tr>
   </thead>
   <tbody>
@@ -23,6 +22,10 @@
           <td><%= link_to(team.school, team) %></td>
           <td><%= team.name %></td>
           <td><%= team.ap_rank %></td>
+          <% if current_user.admin? %>
+            <td><%= link_to "edit", edit_team_path(team) %> |
+                <%= link_to "delete", '#' %><td>
+          <% end %>
         </tr>
       <% end %>
     <% end %>

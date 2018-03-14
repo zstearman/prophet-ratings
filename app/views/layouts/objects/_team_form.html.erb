@@ -17,7 +17,7 @@
   <%= f.text_field :team_logo_url, class: 'form-control' %>
   
   <%= f.label :active, "Active?" %>
-  <%= f.check_box :active %>
+  <%= f.check_box :active, class: 'check_box' %>
   
-  <%= f.submit yield(:button_text), class: "faded-button" %>
+  <%= f.submit yield(:button_text), class: "faded-button", data: { confirm: "Are you sure?" } %>
 <% end %>
