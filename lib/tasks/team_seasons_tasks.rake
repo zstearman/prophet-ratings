@@ -8,6 +8,7 @@ namespace :team_seasons_tasks do
       @team = Team.find_by(key: team_season["Team"])
       currentseason = TeamSeason.find_or_initialize_by(team_id: @team.id, season_id: @season.id)
       if currentseason
+        currentseason.school = @team.school
         currentseason.wins = team_season["Wins"]
         currentseason.losses = team_season["Losses"]
         currentseason.conference_wins = team_season["ConferenceWins"]
@@ -41,6 +42,7 @@ namespace :team_seasons_tasks do
         currentseason.true_shooting_attempts = team_season["TrueShootingAttempts"]
         currentseason.true_shooting_percentage = team_season["TrueShootingPercentage"]
         currentseason.fantasy_points_fan_duel = team_season["FantasyPointsFanDuel"]
+        currentseason.ap_rank = @team.ap_rank
         if currentseason.save
            x = x + 1
         else

@@ -1,2 +1,38 @@
-<h1><%= @team.school + " " + @team.name %></h1>
-<%= image_tag(@team.team_logo_url, width: '100') %>
+<%= image_tag(@team.team_logo_url, width: '100', :class => 'small_team_logo') %>
+<% @season = @team.team_seasons.find_by(season: current_season) %>
+<h1 class="center"><%= @team.school + " " + @team.name %></h1>
+<div class="row">
+  <div class="col-md-6">  
+    <h1 class="center">Team Stats</h1>
+    
+    <table class="table table-sm">
+      <tbody>
+          <tr>
+            <th>FG%</th>
+            <td><%= @season.field_goals_percentage %></td>
+          </tr>
+          <tr>
+            <th>EFG%</th>
+            <td><%= @season.effective_field_goal_percentage %></td>
+          </tr>
+          <tr>
+            <th>2P%</th>
+            <td><%= @season.two_pointers_percentage %></td>
+          </tr>
+          <tr>
+            <th>3P%</th>
+            <td><%= @season.three_pointers_percentage %></td>
+          </tr>
+          <tr>
+            <th>FT%</th>
+            <td><%= @season.free_throws_percentage %></td>
+          </tr>
+          <tr>
+            <th>Reb/Game</th>
+            <td><%= (@season.rebounds / @season.games.to_f).round(1) %></td>
+          </tr>
+      </tbody>
+    </table>
+  </div>  
+</div>
+

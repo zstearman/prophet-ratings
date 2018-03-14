@@ -17,6 +17,6 @@ class StaticPagesController < ApplicationController
   def dashboard
     # Attepmt to order by a foreign table is not successful
     # @team_seasons = TeamSeason.includes(:team).order("team.ap_rank desc")
-    @team_seasons = TeamSeason.order(wins: :desc)
+    @team_seasons = TeamSeason.order(ap_rank: :asc)
   end
 end
