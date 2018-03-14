@@ -48,6 +48,11 @@ class UsersController < ApplicationController
     redirect_to users_url
   end
   
+  def add_favorite_team
+    team_ids.clear
+    team_ids 
+  end
+  
   private
     
     def user_params

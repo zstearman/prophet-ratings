@@ -1,5 +1,6 @@
 class TeamsController < ApplicationController
   before_action :admin_user, only: [:new, :edit, :create, :update, :destroy]
+  helper_method :sort_column, :sort_direction
   
   def new
     @team = Team.new()
@@ -20,7 +21,7 @@ class TeamsController < ApplicationController
   end
 
   def index
-    @teams = Team.all
+    @teams = Team.order("#{sort_column} #{sort_direction}")
   end
 
   def update
@@ -51,5 +52,17 @@ class TeamsController < ApplicationController
     def team_params
       params.require(:team).permit(:school, :name, :active, :ap_rank, 
                                                             :team_logo_url)
+    end
+    
+    def sortable_columns
+      ["school", "name", "ap_rank"]
+    end
+    
+    def sort_column
+      sortable_columns.include?(params[:column]) ? params[:column] : "school"
+    end
+  
+    def sort_direction
+      %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
     end
 end

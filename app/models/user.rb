@@ -63,6 +63,10 @@ class User < ApplicationRecord
     reset_sent_at < 2.hours.ago
   end
   
+  def favorite_team
+    team_ids << team
+  end
+  
   private
     
     def downcase_email

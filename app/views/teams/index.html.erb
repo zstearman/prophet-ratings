@@ -4,9 +4,9 @@
   <thead>
     <tr>
       <th scope="col">#</th>
-      <th scope="col">School</th>
-      <th scope="col">Name</th>
-      <th scope="col">Rank</th>
+      <th scope="col"><%= sort_link "school" %></th>
+      <th scope="col"><%= sort_link "name" %></th>
+      <th scope="col"><%= sort_link "ap_rank" %></th>
       <% if current_user.admin? %>
         <th scope="col">Admin</th>
       <% end %>
