@@ -7,25 +7,33 @@
     
     <table class="table table-sm">
       <tbody>
+        <tr>
+          <th colspan="2" class="center">Shooting</th>
+        </tr>
           <tr>
             <th>FG%</th>
-            <td><%= @season.field_goals_percentage %></td>
+            <td><%= @season.field_goals_percentage %><small>
+              <%=rank("field_goals_percentage", @season.field_goals_percentage)%></small></td>
           </tr>
           <tr>
             <th>EFG%</th>
-            <td><%= @season.effective_field_goal_percentage %></td>
+            <td><%= @season.effective_field_goal_percentage %><small>
+              <%=rank("effective_field_goal_percentage", @season.effective_field_goal_percentage)%></small></td>
           </tr>
           <tr>
             <th>2P%</th>
-            <td><%= @season.two_pointers_percentage %></td>
+            <td><%= @season.two_pointers_percentage %><small>
+              <%=rank("two_pointers_percentage", @season.two_pointers_percentage)%></small></td>
           </tr>
           <tr>
             <th>3P%</th>
-            <td><%= @season.three_pointers_percentage %></td>
+            <td><%= @season.three_pointers_percentage %><small>
+              <%=rank("three_pointers_percentage", @season.three_pointers_percentage)%></small></td>
           </tr>
           <tr>
             <th>FT%</th>
-            <td><%= @season.free_throws_percentage %></td>
+            <td><%= @season.free_throws_percentage %><small>
+              <%=rank("free_throws_percentage", @season.free_throws_percentage)%></small></td>
           </tr>
           <tr>
             <th>Reb/Game</th>
