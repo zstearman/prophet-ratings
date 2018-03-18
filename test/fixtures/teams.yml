@@ -8,10 +8,10 @@ sooners:
   ap_rank: 1
   team_logo_url: https://s3-us-west-2.amazonaws.com/static.fantasydata.com/logos/ncaa/113.png
 
-two:
-  key: MyString
+jayhawks:
+  key: KU
   active: false
-  school: MyString
-  name: MyString
-  ap_rank: 1
+  school: Kansas
+  name: Jayhawks
+  ap_rank: 2
   team_logo_url: MyString
