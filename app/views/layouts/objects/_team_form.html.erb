@@ -16,6 +16,9 @@
   <%= f.label :team_logo_url, "Logo URL" %>
   <%= f.text_field :team_logo_url, class: 'form-control' %>
   
+  <%= f.label :conference %>
+  <%= f.collection_select(:conference_id, Conference.all, :id, :name) %>
+    
   <%= f.label :active, "Active?" %>
   <%= f.check_box :active, class: 'check_box' %>
   

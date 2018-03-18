@@ -10,10 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180318141401) do
+ActiveRecord::Schema.define(version: 20180318225554) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "conferences", force: :cascade do |t|
+    t.string "name"
+    t.string "key"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_conferences_on_name"
+  end
 
   create_table "seasons", force: :cascade do |t|
     t.integer "start_year"
@@ -91,6 +99,8 @@ ActiveRecord::Schema.define(version: 20180318141401) do
     t.string "team_logo_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "conference_id"
+    t.index ["conference_id"], name: "index_teams_on_conference_id"
     t.index ["school"], name: "index_teams_on_school"
   end
 
