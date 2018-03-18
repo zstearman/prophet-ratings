@@ -4,7 +4,7 @@
     
     <table class="table table-sm table-bordered">
       <thead>
-        <tr>
+        <tr class="thead-dark">
           <th scope="col">#</th>
           <th scope="col">AP Rank</th> 
           <th scope="col">School</th>
@@ -18,7 +18,7 @@
         <% x = 0 %>
         <% @team_seasons.each do |season| %>
           <% if !season.team.ap_rank.nil? %>
-            <tr>
+            <tr class="data-row">
               <% x = x + 1 %>
               <th><%= x %></th>
               <td><%= season.ap_rank %></td>

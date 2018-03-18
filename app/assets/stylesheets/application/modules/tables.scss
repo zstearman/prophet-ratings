@@ -11,6 +11,13 @@
 }
 
 .table-sm {
+  box-shadow: 0 0 10px;
+  .data-row {
+    background-color: white;
+    a {
+      color: #0a0d5e;
+    }
+  }
   th, td {
     padding: 0px 2px !important;
   }

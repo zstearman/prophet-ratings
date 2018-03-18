@@ -8,13 +8,13 @@
         <% if (x%40) == 0  %>
           <tr class="thead-dark">
             <th scope="col">#</th>
-            <th scope="col"><%= sort_link "school" %></th>
+            <th scope="col"><%= sort_asc_link "school" %></th>
             <th scope="col"><%= sort_link "wins", "W-L" %></th>
             <th scope="col">conference wins</th>
             <th scope="col">conference losses</th>
           </tr>
         <% end %>
-        <tr>
+        <tr class="data-row">
           <% x = x + 1 %>
           <th><%= x %></th>
           <td><%= link_to(season.team.school, season.team) %></td>
