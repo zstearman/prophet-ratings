@@ -6,7 +6,16 @@ one:
   conference_wins: 1
   conference_losses: MyString
   integer: MyString
-  possessions: 9.99
+  possessions: 200
+  season: 2018
+  team: sooners
+  wins: 20
+  losses: 5
+  conference_wins: 10
+  conference_losses: 5
+  rebounds: 1000
+  games: 25
+  
 
 two:
   wins: 1
@@ -15,3 +24,11 @@ two:
   conference_losses: MyString
   integer: MyString
   possessions: 9.99
+  season: 2018
+  team: sooners
+  wins: 20
+  losses: 5
+  conference_wins: 10
+  conference_losses: 5
+  rebounds: 1000
+  games: 25

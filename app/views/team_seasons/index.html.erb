@@ -15,6 +15,16 @@
     <% x = 0 %>
     <% @team_seasons.each do |season| %>
       <% if season.team.active? %>
+        <% if x == 30 %>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">school</th>
+            <th scope="col">wins</th>
+            <th scope="col">losses</th>
+            <th scope="col">conference wins</th>
+            <th scope="col">conference losses</th>
+          </tr>
+        <% end %>
         <tr>
           <% x = x + 1 %>
           <th><%= x %></th>

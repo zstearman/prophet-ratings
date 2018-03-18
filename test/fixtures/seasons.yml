@@ -1,12 +1,12 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  start_year: 1
-  end_year: 1
-  description: MyString
-  regular_season_start_date: 2018-03-14
+2018:
+  start_year: 2017
+  end_year: 2018
+  description: 2017-2018
+  regular_season_start_date: 2017-10-14
   post_season_start_date: 2018-03-14
-  current: false
+  current: true
 
 two:
   start_year: 1
