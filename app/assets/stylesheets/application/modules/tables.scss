@@ -1,0 +1,17 @@
+.table-bordered{
+  .thead-dark {
+    background: linear-gradient(45deg,#0a0d5e 0%,#9d9ebe 100%);
+    th, a {
+      color: white;
+    }
+  }
+  td, th {
+    border: 1px solid #0a0d5e !important;
+  }
+}
+
+.table-sm {
+  th, td {
+    padding: 0px 2px !important;
+  }
+}
