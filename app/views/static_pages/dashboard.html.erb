@@ -23,7 +23,11 @@
               <td><%= season.ap_rank %></td>
               <td><%= link_to(season.school, season.team) %></td>
               <td><%= season.wins.to_s + "-" + season.losses.to_s %></td>
-              <td><%= season.team.conference.try(:key) %></td>
+              <% if season.team.conference %>
+                <td><%= link_to season.team.conference.key, season.team.conference %></td>
+              <% else %>
+                <td></td>
+              <% end %>
               <td><%= season.conference_losses %></td>
             </tr>
           <% end %>

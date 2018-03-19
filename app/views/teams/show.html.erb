@@ -1,7 +1,14 @@
 <%= image_tag(@team.team_logo_url, width: '100', :class => 'small_team_logo') %>
 <% @season = @team.team_seasons.find_by(season: current_season) %>
 <h1 class="center"><%= @team.school + " " + @team.name %></h1>
-<h2><%= @team.conference.try(:name) %></h2>
+<% @record = @season.wins.to_s + "-" + @season.losses.to_s %>
+<% @conf_record = @season.conference_wins.to_s + "-" + @season.conference_losses.to_s %>
+<h5 class="center"><%= @record + " (" + @conf_record + ")" %>
+  <span> &#8226; </span><%=@team.conference.try(:name) %>
+</h5>
+<% if current_user.admin? %>
+  <%= link_to 'edit team', edit_team_path(@team), class: "edit-team-link" %>
+<% end %>
 <div class="row">
   <div class="col-md-6">  
     <h1 class="center">Team Stats</h1>
