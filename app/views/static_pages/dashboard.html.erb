@@ -9,7 +9,7 @@
           <th scope="col">AP Rank</th> 
           <th scope="col">School</th>
           <th scope="col">W-L</th>
-          <th scope="col">Conf Wins</th>
+          <th scope="col">Conf</th>
           <th scope="col">Conf Losses</th>
         </tr>
       </thead>
@@ -23,7 +23,7 @@
               <td><%= season.ap_rank %></td>
               <td><%= link_to(season.school, season.team) %></td>
               <td><%= season.wins.to_s + "-" + season.losses.to_s %></td>
-              <td><%= season.conference_wins %></td>
+              <td><%= season.team.conference.try(:key) %></td>
               <td><%= season.conference_losses %></td>
             </tr>
           <% end %>

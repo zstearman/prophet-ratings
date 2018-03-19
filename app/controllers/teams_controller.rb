@@ -51,7 +51,7 @@ class TeamsController < ApplicationController
     
     def team_params
       params.require(:team).permit(:school, :name, :active, :ap_rank, 
-                                                            :team_logo_url)
+                                   :conference_id, :team_logo_url)
     end
     
     def sortable_columns
