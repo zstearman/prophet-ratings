@@ -9,6 +9,7 @@ class TeamsControllerTest < ActionDispatch::IntegrationTest
   end
   
   test "should get team show page" do
+    log_in_as(@user)
     get team_path(@team)
     assert_response :success
   end

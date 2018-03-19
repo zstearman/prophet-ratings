@@ -1,2 +1,4 @@
-<h1>Conferences#show</h1>
-<p>Find me in app/views/conferences/show.html.erb</p>
+<h1 class="center"><%= @conference.name %></h1>
+<% @conference.teams.each do |team| %>
+  <p><%= team.school + " " + team.name %></p>
+<% end %>

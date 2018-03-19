@@ -19,12 +19,12 @@ class TeamSeasonsController < ApplicationController
       %w[asc desc].include?(params[:direction]) ? params[:direction] : "desc"
     end
     
-    def logged_in_user
-      unless logged_in?
-        store_location
-        flash[:danger] = "Please log in first."
-        redirect_to login_url
-      end
-    end
+    # def logged_in_user
+    #   unless logged_in?
+    #     store_location
+    #     flash[:danger] = "Please log in first."
+    #     redirect_to login_url
+    #   end
+    # end
     
 end
