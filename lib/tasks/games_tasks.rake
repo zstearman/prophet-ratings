@@ -7,10 +7,22 @@ namespace :games_tasks do
       @season = Season.find_by(end_year: game["Season"])
       @hometeam = Team.find_by(key: game["HomeTeam"])
       @awayteam = Team.find_by(key: game["AwayTeam"])
+      @hometeamseason = TeamSeason.find_by(team: @hometeam, season: @season)
+      @awayteamseason = TeamSeason.find_by(team: @awayteam, season: @season)
       currentgame = Game.find_or_initialize_by(global_game_id: game["GlobalGameID"])
       if currentgame
         currentgame.home_team = game["HomeTeam"]
         currentgame.away_team = game["AwayTeam"]
+        currentgame.home_team_season = @hometeamseason
+        currentgame.away_team_season = @awayteamseason
+        currentgame.away_score = game["AwayTeamScore"]
+        currentgame.home_score = game["HomeTeamScore"]
+        gameday = game["Day"]
+        if gameday
+          currentgame.date = Date.strptime(gameday, '%m/%d/%Y')
+        else
+          currentgame.date = Date.strptime('01/01/2099', '%m/%d/%Y')
+        end
         if currentgame.save
            x = x + 1
         else

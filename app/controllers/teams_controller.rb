@@ -42,6 +42,11 @@ class TeamsController < ApplicationController
   
   def show
     @team = Team.find(params[:id])
+    @season = @team.team_seasons.find_by(season: current_season)
+    @home_games = @season.home_games.all
+    @away_games = @season.away_games.all
+    @games = @home_games + @away_games
+    @games.sort_by! &:date
   end
   
   private

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180320032958) do
+ActiveRecord::Schema.define(version: 20180320174734) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,6 +48,12 @@ ActiveRecord::Schema.define(version: 20180320032958) do
     t.integer "tournament_display_order"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "home_team_id"
+    t.integer "away_team_id"
+    t.integer "home_team_season_id"
+    t.integer "away_team_season_id"
+    t.date "date"
+    t.index ["global_game_id", "home_team", "away_team"], name: "index_games_on_global_game_id_and_home_team_and_away_team"
     t.index ["season_id"], name: "index_games_on_season_id"
   end
 
@@ -153,6 +159,10 @@ ActiveRecord::Schema.define(version: 20180320032958) do
   end
 
   add_foreign_key "games", "seasons"
+  add_foreign_key "games", "team_seasons", column: "away_team_season_id"
+  add_foreign_key "games", "team_seasons", column: "home_team_season_id"
+  add_foreign_key "games", "teams", column: "away_team_id"
+  add_foreign_key "games", "teams", column: "home_team_id"
   add_foreign_key "team_seasons", "seasons"
   add_foreign_key "team_seasons", "teams"
 end
