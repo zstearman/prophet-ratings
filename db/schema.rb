@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180318225554) do
+ActiveRecord::Schema.define(version: 20180320032958) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,34 @@ ActiveRecord::Schema.define(version: 20180318225554) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_conferences_on_name"
+  end
+
+  create_table "games", force: :cascade do |t|
+    t.bigint "season_id"
+    t.integer "season_type"
+    t.string "status"
+    t.string "away_team"
+    t.string "home_team"
+    t.integer "away_score"
+    t.integer "home_score"
+    t.datetime "updated"
+    t.string "period"
+    t.decimal "point_spread"
+    t.decimal "over_under"
+    t.integer "away_money_line"
+    t.integer "home_money_line"
+    t.integer "tournament_id"
+    t.string "bracket"
+    t.integer "round"
+    t.integer "away_seed"
+    t.integer "home_seed"
+    t.integer "global_game_id"
+    t.integer "away_previous_global_game_id"
+    t.integer "home_previous_global_game_id"
+    t.integer "tournament_display_order"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["season_id"], name: "index_games_on_season_id"
   end
 
   create_table "seasons", force: :cascade do |t|
@@ -124,6 +152,7 @@ ActiveRecord::Schema.define(version: 20180318225554) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "games", "seasons"
   add_foreign_key "team_seasons", "seasons"
   add_foreign_key "team_seasons", "teams"
 end
