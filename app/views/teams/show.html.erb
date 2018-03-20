@@ -65,8 +65,29 @@
         <% @games.each do |game| %>
           <tr>
             <td><%= game.date %></td>
-            <td><%= game.away_team + "@" + game.home_team %></td>
-            <td><%= game.away_score.to_s + "-" + game.home_score.to_s %></td>
+            <% if game.away_team_season && game.home_team_season %>
+              <% if @team.key == game.away_team %>
+                <td><%=  link_to "@" + game.home_team_season.team.school,
+                                       game.home_team_season.team %></td>
+                <% if game.away_score %>
+                  <% if game.away_score > game.home_score %>
+                    <td><%= "W, "  + game.away_score.to_s + "-" + game.home_score.to_s %></td>
+                  <% else %>
+                    <td><%= "L, "  + game.away_score.to_s + "-" + game.home_score.to_s %></td>
+                  <% end %>
+                <% end %>
+              <% else %>
+                <td><%= link_to game.away_team_season.team.school,
+                                game.away_team_season.team %></td>
+                <% if game.home_score %>
+                  <% if game.home_score > game.away_score %>
+                    <td><%= "W, "  + game.home_score.to_s + "-" + game.away_score.to_s %></td>
+                  <% else %>
+                    <td><%= "L, "  + game.home_score.to_s + "-" + game.away_score.to_s %></td>
+                  <% end %>
+                <% end %>
+              <% end %>
+            <% end %>
           </tr>
         <% end %>
       </tbody>
