@@ -53,7 +53,8 @@
           <tr class="data-row">
             <td><%= game.away_team + "@" + game.home_team %></td>
             <td></td>
-            <td></td>
+            <td><%= game.point_spread %></td>
+            <td><%= game.over_under %></td>
           </tr>
         <% end %>
       </tbody>

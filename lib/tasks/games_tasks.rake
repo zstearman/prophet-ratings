@@ -17,6 +17,22 @@ namespace :games_tasks do
         currentgame.away_team_season = @awayteamseason
         currentgame.away_score = game["AwayTeamScore"]
         currentgame.home_score = game["HomeTeamScore"]
+        currentgame.season_type = game["SeasonType"]
+        currentgame.updated = game["Updated"]
+        currentgame.period = game["Period"]
+        currentgame.point_spread = game["PointSpread"]
+        currentgame.over_under = game["OverUnder"]
+        currentgame.away_money_line = game["AwayMoneyLine"]
+        currentgame.home_money_line = game["HomeMoneyLine"]
+        currentgame.tournament_id  = game["TournamentID"]
+        currentgame.bracket = game["Bracket"]
+        currentgame.round = game["Round"]
+        currentgame.away_seed = game["AwaySeed"]
+        currentgame.home_seed = game["HomeSeed"]
+        currentgame.global_game_id = game["GlobalGameID"]
+        currentgame.away_previous_global_game_id = game["AwayPreviousGlobalGameID"]
+        currentgame.home_previous_global_game_id = game["HomePreviousGlobalGameID"]
+        currentgame.tournament_display_order = game["TournamentDisplayOrder"]
         gameday = game["Day"]
         if gameday
           currentgame.date = Date.strptime(gameday, '%m/%d/%Y')
