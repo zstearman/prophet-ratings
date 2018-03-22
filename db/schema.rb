@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180320174734) do
+ActiveRecord::Schema.define(version: 20180322142850) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,8 +27,6 @@ ActiveRecord::Schema.define(version: 20180320174734) do
     t.bigint "season_id"
     t.integer "season_type"
     t.string "status"
-    t.string "away_team"
-    t.string "home_team"
     t.integer "away_score"
     t.integer "home_score"
     t.datetime "updated"
@@ -53,7 +51,15 @@ ActiveRecord::Schema.define(version: 20180320174734) do
     t.integer "home_team_season_id"
     t.integer "away_team_season_id"
     t.date "date"
-    t.index ["global_game_id", "home_team", "away_team"], name: "index_games_on_global_game_id_and_home_team_and_away_team"
+    t.datetime "date_time"
+    t.string "home_team_key"
+    t.string "away_team_key"
+    t.integer "possessions"
+    t.integer "global_away_team_id"
+    t.integer "global_home_team_id"
+    t.string "location_type"
+    t.string "location"
+    t.index ["date"], name: "index_games_on_date"
     t.index ["season_id"], name: "index_games_on_season_id"
   end
 
@@ -106,7 +112,6 @@ ActiveRecord::Schema.define(version: 20180320174734) do
     t.integer "points"
     t.decimal "true_shooting_attempts"
     t.decimal "true_shooting_percentage"
-    t.decimal "assits_percentage"
     t.decimal "steals_percentage"
     t.decimal "blocks_percentage"
     t.decimal "turnovers_percentage"
@@ -119,6 +124,9 @@ ActiveRecord::Schema.define(version: 20180320174734) do
     t.integer "ap_rank"
     t.integer "conference_losses"
     t.integer "possessions"
+    t.integer "season_type"
+    t.integer "global_team_season_id"
+    t.decimal "assists_percentage"
     t.index ["season_id"], name: "index_team_seasons_on_season_id"
     t.index ["team_id", "season_id"], name: "index_team_seasons_on_team_id_and_season_id"
     t.index ["team_id"], name: "index_team_seasons_on_team_id"
@@ -129,11 +137,12 @@ ActiveRecord::Schema.define(version: 20180320174734) do
     t.boolean "active"
     t.string "school"
     t.string "name"
-    t.integer "ap_rank"
     t.string "team_logo_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "conference_id"
+    t.integer "global_team_id"
+    t.integer "ap_rank"
     t.index ["conference_id"], name: "index_teams_on_conference_id"
     t.index ["school"], name: "index_teams_on_school"
   end

@@ -51,8 +51,13 @@
       <tbody>
         <% @games.each do |game| %>
           <tr class="data-row">
-            <td><%= game.away_team + "@" + game.home_team %></td>
-            <td></td>
+            <% if game.away_team %>
+              <% awayname = game.away_team.school %>
+            <% else %>
+              <% awayname = game.away_team_key %>
+            <% end %>
+            <td><%= awayname.to_s + " @ " + game.home_team.school %></td>
+            <td><%= game.date_time.strftime("%I:%M %p") %></td>
             <td><%= game.point_spread %></td>
             <td><%= game.over_under %></td>
           </tr>

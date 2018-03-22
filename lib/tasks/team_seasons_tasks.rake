@@ -42,7 +42,12 @@ namespace :team_seasons_tasks do
         currentseason.true_shooting_attempts = team_season["TrueShootingAttempts"]
         currentseason.true_shooting_percentage = team_season["TrueShootingPercentage"]
         currentseason.fantasy_points_fan_duel = team_season["FantasyPointsFanDuel"]
+        currentseason.season_type = team_season["SeasonType"]
+        currentseason.global_team_season_id = team_season["StatID"]
         currentseason.ap_rank = @team.ap_rank
+        currentseason.p_tempo = currentseason.possessions / ( currentseason.games * 1.0 )
+        currentseason.assists_percentage = currentseason.assists / ( currentseason.field_goals_made * 1.0 )
+        currentseason.turnovers_percentage = currentseason.turnovers / ( currentseason.possessions * 1.0 )
         if currentseason.save
            x = x + 1
         else

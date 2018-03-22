@@ -11,10 +11,12 @@ namespace :games_tasks do
       @awayteamseason = TeamSeason.find_by(team: @awayteam, season: @season)
       currentgame = Game.find_or_initialize_by(global_game_id: game["GlobalGameID"])
       if currentgame
-        currentgame.home_team = game["HomeTeam"]
-        currentgame.away_team = game["AwayTeam"]
+        currentgame.home_team = @hometeam
+        currentgame.away_team = @awayteam
         currentgame.home_team_season = @hometeamseason
         currentgame.away_team_season = @awayteamseason
+        currentgame.home_team_key = game["HomeTeam"]
+        currentgame.away_team_key = game["AwayTeam"]
         currentgame.away_score = game["AwayTeamScore"]
         currentgame.home_score = game["HomeTeamScore"]
         currentgame.season_type = game["SeasonType"]
@@ -36,8 +38,9 @@ namespace :games_tasks do
         gameday = game["Day"]
         if gameday
           currentgame.date = Date.strptime(gameday, '%m/%d/%Y')
+          currentgame.date_time = DateTime.strptime(game["DateTime"], '%m/%d/%Y %I:%M:%S %p')
         else
-          currentgame.date = Date.strptime('01/01/2099', '%m/%d/%Y')
+          currentgame.date = DateTime.strptime('01/01/2099 12:00:00 AM', '%m/%d/%Y %I:%M:%S %p')
         end
         if currentgame.save
            x = x + 1

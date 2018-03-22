@@ -23,8 +23,8 @@ namespace :teams_tasks do
       currentteam.key = team["[Key]"]
       currentteam.active = team["Active"]
       currentteam.name = team["Name"]
-      currentteam.ap_rank = team["ApRank"]
       currentteam.team_logo_url = team["TeamLogoUrl"]
+      currentteam.ap_rank = team["ApRank"]
       currentteam.save
       x = x + 1
     end
