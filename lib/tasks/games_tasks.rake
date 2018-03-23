@@ -15,6 +15,7 @@ namespace :games_tasks do
         currentgame.away_team = @awayteam
         currentgame.home_team_season = @hometeamseason
         currentgame.away_team_season = @awayteamseason
+        currentgame.status = game["Status"]
         currentgame.home_team_key = game["HomeTeam"]
         currentgame.away_team_key = game["AwayTeam"]
         currentgame.away_score = game["AwayTeamScore"]

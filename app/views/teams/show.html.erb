@@ -15,37 +15,57 @@
     
     <table class="table table-sm">
       <tbody>
-        <tr>
+        <tr class="thead-dark">
+          <th colspan="2" class="center">Prophet Ratings</th>
+        </tr>
+          <tr class="data-row">
+          <th>PTempo</th>
+          <td><%= @season.p_tempo.round(1) %>
+            <small><%= rank("p_tempo", @season.p_tempo) %></small>
+          </td>
+        </tr>
+        <tr class="thead-dark">
           <th colspan="2" class="center">Shooting</th>
         </tr>
-          <tr>
+          <tr class="data-row">
             <th>FG%</th>
             <td><%= @season.field_goals_percentage %><small>
               <%=rank("field_goals_percentage", @season.field_goals_percentage)%></small></td>
           </tr>
-          <tr>
+          <tr class="data-row">
             <th>EFG%</th>
             <td><%= @season.effective_field_goal_percentage %><small>
               <%=rank("effective_field_goal_percentage", @season.effective_field_goal_percentage)%></small></td>
           </tr>
-          <tr>
+          <tr class="data-row">
             <th>2P%</th>
             <td><%= @season.two_pointers_percentage %><small>
               <%=rank("two_pointers_percentage", @season.two_pointers_percentage)%></small></td>
           </tr>
-          <tr>
+          <tr class="data-row">
             <th>3P%</th>
             <td><%= @season.three_pointers_percentage %><small>
               <%=rank("three_pointers_percentage", @season.three_pointers_percentage)%></small></td>
           </tr>
-          <tr>
+          <tr class="data-row">
             <th>FT%</th>
             <td><%= @season.free_throws_percentage %><small>
               <%=rank("free_throws_percentage", @season.free_throws_percentage)%></small></td>
           </tr>
-          <tr>
-            <th>Reb/Game</th>
-            <td><%= (@season.rebounds / @season.games.to_f).round(1) %></td>
+        <tr class="thead-dark">
+          <th colspan="2" class="center">Style</th>
+        </tr>
+          <tr class="data-row">
+            <th>A/FGM</th>
+            <td><%= @season.assists_percentage.round(3) %><small>
+              <%=rank("assists_percentage", @season.assists_percentage)%></small>
+            </td>
+          </tr>
+          <tr class="data-row">
+            <th>TO%</th>
+            <td><%= @season.turnovers_percentage.round(3) %><small>
+              <%= inverse_rank("turnovers_percentage", @season.turnovers_percentage)%></small>
+            </td>
           </tr>
       </tbody>
     </table>
@@ -55,7 +75,7 @@
     <h1 class="center">Schedule</h1>
     <table class="table table-sm">
       <thead>
-        <tr>
+        <tr class="thead-dark">
           <th>Date</th>
           <th>Game</th>
           <th>Result</th>
@@ -63,19 +83,10 @@
       </thead>
       <tbody>
         <% @games.each do |game| %>
-          <tr>
+          <tr class="data-row">
             <td><%= game.date %></td>
-            <% if game.away_team_season && game.home_team_season %>
-              <% if @team == game.away_team %>
-                <td><%=  link_to "@" + game.home_team_season.team.school,
-                                       game.home_team_season.team %></td>
-                <td><%= game.outcome(@team) %></td>
-              <% else %>
-                <td><%= link_to game.away_team_season.team.school,
-                                game.away_team_season.team %></td>
-                <td><%= game.outcome(@team) %></td>
-              <% end %>
-            <% end %>
+            <td><%= link_to game.opponent_name(@team), game.opponent(@team) %> </td>
+            <td><%= game.outcome(@team) %></td>
           </tr>
         <% end %>
       </tbody>

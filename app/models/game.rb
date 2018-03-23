@@ -1,5 +1,5 @@
 class Game < ApplicationRecord
-  attr_accessor :away_margin_of_victory, :margin_of_victory, :outcome
+  attr_accessor :away_margin_of_victory, :margin_of_victory, :outcome, :opponent, :opponent_name
   belongs_to :away_team_season, :class_name => 'TeamSeason', :foreign_key => 'away_team_season_id'
   belongs_to :home_team_season, :class_name => 'TeamSeason', :foreign_key => 'home_team_season_id'
   belongs_to :home_team, :class_name => 'Team', :foreign_key => 'home_team_id'
@@ -20,20 +20,62 @@ class Game < ApplicationRecord
   end
   
   def outcome(team)
-    if team == home_team
-      if home_score > away_score
-        @outcome = "W, " + home_score.to_s + "-" + away_score.to_s
+    if away_score && home_score
+      if team == home_team
+        if home_score > away_score
+          @outcome = "W, " + home_score.to_s + "-" + away_score.to_s
+        else
+          @outcome = "L, " + home_score.to_s + "-" + away_score.to_s
+        end
+      elsif team == away_team
+        if away_score > home_score
+          @outcome = "W, " + away_score.to_s + "-" + home_score.to_s
+        else
+          @outcome = "L, " + away_score.to_s + "-" + home_score.to_s
+        end
       else
-        @outcome = "L, " + home_score.to_s + "-" + away_score.to_s
-      end
-    elsif team == away_team
-      if away_score > home_score
-        @outcome = "W, " + away_score.to_s + "-" + home_score.to_s
-      else
-        @outcome = "L, " + away_score.to_s + "-" + home_score.to_s
+        return nil
       end
     else
       return nil
     end
   end
+  
+  def opponent(team)
+    if team == home_team
+      if away_team
+        @opponent = away_team
+      else
+        @opponent = nil
+      end
+    elsif team == away_team
+      if home_team
+        @opponent = home_team
+      else
+        @opponent = nil
+      end
+    else
+      return nil
+    end
+  end
+  
+  def opponent_name(team)
+    if team == home_team
+      if away_team
+        @opponent = away_team.school
+      else
+        @opponent = away_team_key
+      end
+    elsif team == away_team
+      if home_team
+        @opponent = "@" + home_team.school
+      else
+        @opponent = "@" + home_team_key
+      end
+    else
+      return nil
+    end
+  end
+    
+  
 end
