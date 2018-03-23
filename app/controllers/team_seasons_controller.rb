@@ -6,6 +6,11 @@ class TeamSeasonsController < ApplicationController
     @team_seasons = TeamSeason.order("#{sort_column} #{sort_direction}")
   end
   
+  def stats
+    @team_seasons = TeamSeason.all
+    
+  end
+  
   private
     def sortable_columns
       ["school", "wins"]
@@ -26,5 +31,5 @@ class TeamSeasonsController < ApplicationController
     #     redirect_to login_url
     #   end
     # end
-    
+
 end

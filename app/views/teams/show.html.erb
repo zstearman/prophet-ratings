@@ -15,15 +15,49 @@
     
     <table class="table table-sm">
       <tbody>
+      
+<!--prophet ratings section-->
         <tr class="thead-dark">
           <th colspan="2" class="center">Prophet Ratings</th>
         </tr>
+        
           <tr class="data-row">
-          <th>PTempo</th>
-          <td><%= @season.p_tempo.round(1) %>
-            <small><%= rank("p_tempo", @season.p_tempo) %></small>
-          </td>
+            <th>PTempo</th>
+            <td><%= @season.p_tempo.round(1) %>
+              <small><%= rank("p_tempo", @season.p_tempo) %></small>
+            </td>
+          </tr>
+          
+<!--four factors section-->
+        <tr class="thead-dark">
+          <th colspan="2" class="center">Four Factors</th>
         </tr>
+        
+          <tr class="data-row">
+            <td>Effective FG%</td>
+            <td><%= @season.effective_field_goal_percentage %>
+              <small><%=rank("effective_field_goal_percentage", @season.effective_field_goal_percentage)%></small>
+            </td>
+          </tr>
+          
+          <tr class="data-row">
+            <td>Turnover %</td>
+            <td><%= @season.turnovers_percentage.round(3) %>
+              <small><%= inverse_rank("turnovers_percentage", @season.turnovers_percentage)%></small>
+            </td>
+          </tr>
+          
+          <tr class="data-row">
+            <td>Offensive Rebound %</td>
+            <td>
+            </td>
+          </tr>
+          <tr class="data-row">
+            <td>FTA/FGM</td>
+            <td><%= ( @season.free_throws_attempted / @season.field_goals_attempted.to_f ).round(3) %>
+              <small></small>
+            </td>
+          </tr>
         <tr class="thead-dark">
           <th colspan="2" class="center">Shooting</th>
         </tr>
@@ -31,11 +65,6 @@
             <th>FG%</th>
             <td><%= @season.field_goals_percentage %><small>
               <%=rank("field_goals_percentage", @season.field_goals_percentage)%></small></td>
-          </tr>
-          <tr class="data-row">
-            <th>EFG%</th>
-            <td><%= @season.effective_field_goal_percentage %><small>
-              <%=rank("effective_field_goal_percentage", @season.effective_field_goal_percentage)%></small></td>
           </tr>
           <tr class="data-row">
             <th>2P%</th>
@@ -62,10 +91,8 @@
             </td>
           </tr>
           <tr class="data-row">
-            <th>TO%</th>
-            <td><%= @season.turnovers_percentage.round(3) %><small>
-              <%= inverse_rank("turnovers_percentage", @season.turnovers_percentage)%></small>
-            </td>
+            <th>3PA/FGA</th>
+            <td><%= (@season.three_pointers_attempted / @season.field_goals_attempted.to_f).round(3) %></td>
           </tr>
       </tbody>
     </table>
