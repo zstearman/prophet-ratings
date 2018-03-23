@@ -18,7 +18,7 @@
   
   <!--Need to investigate many to many relationship for this to work.-->
   <%= f.label :favorite_team %>
-  <%= f.collection_select :team_id, Team.order(school: :asc), :id, :school, prompt: true %>
+  <%= f.collection_select( :team_id, Team.order(school: :asc), :id, :school, {:prompt => true }, { :class => 'form-control' } ) %>
   
   <%= f.hidden_field :account_level, :value => params[:plan_id].blank? ? nil : params[:plan_id] %>
   
