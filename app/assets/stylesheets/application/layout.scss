@@ -4,11 +4,15 @@
 /* universal */
 
 body {
-  padding-top: 90px;
+  padding-top: 150px;
   // background-color: #eaeaea;
   @media(min-width: $screen-md-min){
     .container{
+      width: 100%;
+    }
+    .page-content{
       width: 80%;
+      margin: auto;
     }
   }
 }
@@ -38,8 +42,8 @@ textarea {
 /* header */
 
 .navbar-fixed-top {
-  padding-top: 10px;
-  padding-bottom: 10px;
+  // padding-top: 10px;
+  // padding-bottom: 10px;
   border-bottom: 1px solid #bbb;
   background-color: #fff;
   #signup {
@@ -63,6 +67,39 @@ textarea {
     &:hover {
       color: #111;
       background-color: #fff;
+    }
+  }
+}
+
+#logged-in-header {
+  padding: 0;
+  background-color: #0a0d5e;
+  #logo-left {
+    padding-left: 40px;
+    background-image: url('/HeaderLeft.jpg');
+    background-color: white;
+    background-size: 100% 100%;
+  }
+  #user-dropdown {
+    text-align: right;
+    vertical-align: middle;
+    padding-top: 20px;
+    padding-right: 60px;
+    font-size: 2em;
+    a{
+      color: white;
+    }
+  }
+  .subheader {
+    background-color: #66666d;
+    ul {
+      padding-right: 40px;
+      li {
+        padding: 0;
+          a {
+          color: white;
+        }
+      }
     }
   }
 }
