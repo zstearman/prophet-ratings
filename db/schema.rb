@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180322142850) do
+ActiveRecord::Schema.define(version: 20180326214604) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,6 +61,35 @@ ActiveRecord::Schema.define(version: 20180322142850) do
     t.string "location"
     t.index ["date"], name: "index_games_on_date"
     t.index ["season_id"], name: "index_games_on_season_id"
+  end
+
+  create_table "player_games", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "global_player_id"
+    t.integer "global_player_game_id"
+    t.string "name"
+    t.index ["global_player_game_id"], name: "index_player_games_on_global_player_game_id"
+    t.index ["global_player_id"], name: "index_player_games_on_global_player_id"
+  end
+
+  create_table "players", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "global_player_id"
+    t.string "first_name"
+    t.string "last_name"
+    t.bigint "team_id"
+    t.integer "jersey"
+    t.string "position"
+    t.string "year"
+    t.integer "height"
+    t.integer "weight"
+    t.string "birth_city"
+    t.string "birth_state"
+    t.string "high_school"
+    t.index ["global_player_id"], name: "index_players_on_global_player_id"
+    t.index ["team_id"], name: "index_players_on_team_id"
   end
 
   create_table "seasons", force: :cascade do |t|
@@ -172,6 +201,7 @@ ActiveRecord::Schema.define(version: 20180322142850) do
   add_foreign_key "games", "team_seasons", column: "home_team_season_id"
   add_foreign_key "games", "teams", column: "away_team_id"
   add_foreign_key "games", "teams", column: "home_team_id"
+  add_foreign_key "players", "teams"
   add_foreign_key "team_seasons", "seasons"
   add_foreign_key "team_seasons", "teams"
 end
