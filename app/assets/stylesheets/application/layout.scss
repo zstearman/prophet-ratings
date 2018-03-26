@@ -4,7 +4,7 @@
 /* universal */
 
 body {
-  padding-top: 150px;
+  padding-top: 120px;
   // background-color: #eaeaea;
   @media(min-width: $screen-md-min){
     .container{
@@ -13,6 +13,9 @@ body {
     .page-content{
       width: 80%;
       margin: auto;
+    }
+    .logged-out-body{
+      margin-top: -20px;
     }
   }
 }
@@ -58,6 +61,13 @@ textarea {
   }
 }
 
+.logged-out-navbar {
+  padding: 10px 10px;
+  @media(min-width: $screen-md-min){
+    padding: 10px 10%;
+  }
+}
+
 .navbar-right li {
   padding-top: 10px;
   a {
@@ -78,7 +88,7 @@ textarea {
     padding-left: 40px;
     background-image: url('/HeaderLeft.jpg');
     background-color: white;
-    background-size: 100% 100%;
+    background-size: 100%;
   }
   #user-dropdown {
     text-align: right;
@@ -89,6 +99,11 @@ textarea {
     a{
       color: white;
     }
+    .dropdown-menu{
+      a {
+        color: #66666d;
+      }
+    }
   }
   .subheader {
     background-color: #66666d;
@@ -98,7 +113,15 @@ textarea {
         padding: 0;
           a {
           color: white;
+          &:hover {
+            color: #66666d;
+          }
         }
+      }
+    }
+    .dropdown-menu{
+      a {
+        color: #66666d;
       }
     }
   }
