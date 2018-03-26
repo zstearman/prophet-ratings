@@ -19,9 +19,9 @@
 }
 
 .thead-dark {
-  background-color: #0a0d5e;
+  background-color: #0a0d5e !important;
   // background: linear-gradient(45deg,#0a0d5e 0%,#9d9ebe 100%);
   th, a {
-    color: white;
+    color: white !important;
   }
 }

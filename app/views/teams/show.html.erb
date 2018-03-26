@@ -1,4 +1,4 @@
-<div class="page-content">
+<div class="page-content-wide">
   <%= image_tag(@team.team_logo_url, width: '100', :class => 'small_team_logo') %>
   <% provide(:title, @team.school + " " + @team.name) %>
   <% @season = @team.team_seasons.find_by(season: current_season) %>
@@ -11,11 +11,37 @@
   <% if current_user.admin? %>
     <%= link_to 'edit team', edit_team_path(@team), class: "edit-team-link" %>
   <% end %>
+  
   <div class="row">
-    <div class="col-md-6">  
+    <div class="col-sm-3">
+      <h1 class="center">Schedule</h1>
+      <table class="table table-sm table-striped">
+        <thead>
+          <tr class="thead-dark">
+            <th>Date</th>
+            <th>Game</th>
+            <th>Result</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @games.each do |game| %>
+            <tr class="data-row">
+              <td><%= game.date %></td>
+              <td><%= link_to game.opponent_name(@team), game.opponent(@team) %> </td>
+              <td><%= game.outcome(@team) %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+  
+    </div>
+    <div class="col-sm-6">
+      
+    </div>
+    <div class="col-sm-3">  
       <h1 class="center">Team Stats</h1>
       
-      <table class="table table-sm">
+      <table class="table table-sm table-striped">
         <tbody>
         
   <!--prophet ratings section-->
@@ -100,27 +126,6 @@
       </table>
     </div>  
     
-    <div class="col-md-6">
-      <h1 class="center">Schedule</h1>
-      <table class="table table-sm">
-        <thead>
-          <tr class="thead-dark">
-            <th>Date</th>
-            <th>Game</th>
-            <th>Result</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @games.each do |game| %>
-            <tr class="data-row">
-              <td><%= game.date %></td>
-              <td><%= link_to game.opponent_name(@team), game.opponent(@team) %> </td>
-              <td><%= game.outcome(@team) %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-  
-    </div>
+    
   </div>
 </div>
