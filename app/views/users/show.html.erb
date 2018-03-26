@@ -1,27 +1,29 @@
 <% provide(:title, "My Account") %>
-<h1 class="center">My Account</h1>
-<div class="row">
-     <div class="account-sidebox col-md-6">
-       <h2>Account Info</h2>
-       <%= link_to 'Update', edit_user_path(current_user) %>
-       <p class="user-label">Name</p>
-       <p><%= @user.first_name + " " + @user.last_name %></p>
-       <p class="user-label">Email</p>
-       <p><%= @user.email %></p>
-       <p class="user-label">Password</p>
-       <p class="user-label">Favorite Team</p>
-       <% @team = Team.find_by(id: @user.team_id) %>
-       <p><%= @team.school if @team %></p>
-       <%= image_tag(@team.team_logo_url, width: "50")  if @team %>
-     </div>
-     <div class="account-sidebox col-md-6">
-       <h2>Subscription Info</h2>
-       <%= link_to 'Update', plans_path %>
-       <p class="user-label">Plan Type</p>
-       <p><%= @user.account_level %></p>       
-       <p class="user-label">Expiration Date</p>
-       <p><%= @user.expiration_date %></p>
-       <p class="user-label">Payment Info</p>
-       <p class="user-label">Referral</p>
-     </div>
+<div class="page-content">
+  <h1 class="center">My Account</h1>
+  <div class="row">
+    <div class="account-sidebox col-md-6">
+      <h2>Account Info</h2>
+      <%= link_to 'Update', edit_user_path(current_user) %>
+      <p class="user-label">Name</p>
+      <p><%= @user.first_name + " " + @user.last_name %></p>
+      <p class="user-label">Email</p>
+      <p><%= @user.email %></p>
+      <p class="user-label">Password</p>
+      <p class="user-label">Favorite Team</p>
+      <% @team = Team.find_by(id: @user.team_id) %>
+      <p><%= @team.school if @team %></p>
+      <%= image_tag(@team.team_logo_url, width: "50")  if @team %>
+    </div>
+    <div class="account-sidebox col-md-6">
+      <h2>Subscription Info</h2>
+      <%= link_to 'Update', plans_path %>
+      <p class="user-label">Plan Type</p>
+      <p><%= @user.account_level %></p>       
+      <p class="user-label">Expiration Date</p>
+      <p><%= @user.expiration_date %></p>
+      <p class="user-label">Payment Info</p>
+      <p class="user-label">Referral</p>
+    </div>
+  </div>
 </div>

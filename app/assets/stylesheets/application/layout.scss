@@ -125,6 +125,9 @@ textarea {
       height: 50px;
       color: #0a0d5e;
       font-size: 1.4em;
+      // @media(min-width: $screen-md-min){
+      //   font-size: 1.4em;
+      // }
       padding-left: 10%;
       padding-top: 10px
     }

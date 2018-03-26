@@ -1,36 +1,39 @@
-<h1 class="center">Team List</h1>
-
-<table class="table table-sm">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col"><%= sort_link "school" %></th>
-      <th scope="col"><%= sort_link "name" %></th>
-      <th scope="col"><%= sort_link "ap_rank" %></th>
-      <% if current_user.admin? %>
-        <th scope="col">Admin</th>
+<div class="page-content">
+  
+  <h1 class="center">Team List</h1>
+  
+  <table class="table table-sm">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col"><%= sort_link "school" %></th>
+        <th scope="col"><%= sort_link "name" %></th>
+        <th scope="col"><%= sort_link "ap_rank" %></th>
+        <% if current_user.admin? %>
+          <th scope="col">Admin</th>
+        <% end %>
+      </tr>
+    </thead>
+    <tbody>
+      <% x = 0 %>
+      <% @teams.each do |team| %>
+        <% if team.active? %>
+          <tr>
+            <% x = x + 1 %>
+            <th><%= x %></th>
+            <td><%= link_to(team.school, team) %></td>
+            <td><%= team.name %></td>
+            <td><%= team.ap_rank %></td>
+            <% if current_user.admin? %>
+              <td><%= link_to "edit", edit_team_path(team) %> |
+                  <%= link_to "delete", team, method: :delete,
+                                        data: { confirm: "Are you sure?" } %><td>
+            <% end %>
+          </tr>
+        <% end %>
       <% end %>
-    </tr>
-  </thead>
-  <tbody>
-    <% x = 0 %>
-    <% @teams.each do |team| %>
-      <% if team.active? %>
-        <tr>
-          <% x = x + 1 %>
-          <th><%= x %></th>
-          <td><%= link_to(team.school, team) %></td>
-          <td><%= team.name %></td>
-          <td><%= team.ap_rank %></td>
-          <% if current_user.admin? %>
-            <td><%= link_to "edit", edit_team_path(team) %> |
-                <%= link_to "delete", team, method: :delete,
-                                      data: { confirm: "Are you sure?" } %><td>
-          <% end %>
-        </tr>
-      <% end %>
-    <% end %>
-  </tbody>
-</table>
+    </tbody>
+  </table>
 
-
+</div>
+  

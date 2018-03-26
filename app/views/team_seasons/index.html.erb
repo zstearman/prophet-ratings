@@ -1,33 +1,35 @@
-<h1 class="center">Rankings</h1>
+<div class="page-content-wide">
+  <h1 class="center">Rankings</h1>
 
-<table class="table table-sm table-bordered">
-  <tbody>
-    <% x = 0 %>
-    <% @team_seasons.each do |season| %>
-      <% if season.team.active? %>
-        <% if (x%40) == 0  %>
-          <tr class="thead-dark">
-            <th scope="col">#</th>
-            <th scope="col"><%= sort_asc_link "school" %></th>
-            <th scope="col"><%= sort_link "wins", "W-L" %></th>
-            <th scope="col">Conf</th>
-            <th scope="col">conference losses</th>
+  <table class="table table-sm table-bordered">
+    <tbody>
+      <% x = 0 %>
+      <% @team_seasons.each do |season| %>
+        <% if season.team.active? %>
+          <% if (x%40) == 0  %>
+            <tr class="thead-dark">
+              <th scope="col">#</th>
+              <th scope="col"><%= sort_asc_link "school" %></th>
+              <th scope="col"><%= sort_link "wins", "W-L" %></th>
+              <th scope="col">Conf</th>
+              <th scope="col">conference losses</th>
+            </tr>
+          <% end %>
+          <tr class="data-row">
+            <% x = x + 1 %>
+            <th><%= x %></th>
+            <td><%= link_to(season.team.school, season.team) %></td>
+            <td><%= season.wins.to_s + "-" + season.losses.to_s %></td>
+            <% if season.team.conference %>
+              <td><%= link_to season.team.conference.key, season.team.conference %></td>
+            <% else %>
+              <td></td>
+            <% end %>
+            <td><%= season.conference_losses %></td>
           </tr>
         <% end %>
-        <tr class="data-row">
-          <% x = x + 1 %>
-          <th><%= x %></th>
-          <td><%= link_to(season.team.school, season.team) %></td>
-          <td><%= season.wins.to_s + "-" + season.losses.to_s %></td>
-          <% if season.team.conference %>
-            <td><%= link_to season.team.conference.key, season.team.conference %></td>
-          <% else %>
-            <td></td>
-          <% end %>
-          <td><%= season.conference_losses %></td>
-        </tr>
       <% end %>
-    <% end %>
-  </tbody>
-</table>
+    </tbody>
+  </table>
 
+</div>
