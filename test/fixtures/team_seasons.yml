@@ -14,6 +14,13 @@ one:
   conference_losses: 5
   rebounds: 1000
   games: 25
+  p_tempo: 100
+  turnovers_percentage: 10
+  free_throws_attempted: 10
+  field_goals_attempted: 100
+  assists_percentage: 10
+  three_pointers_attempted: 10
+  
   
 
 two:
@@ -30,3 +37,9 @@ two:
   conference_losses: 5
   rebounds: 1000
   games: 25
+  p_tempo: 100
+  turnovers_percentage: 10
+  free_throws_attempted: 10
+  field_goals_attempted: 100
+  assists_percentage: 10
+  three_pointers_attempted: 10

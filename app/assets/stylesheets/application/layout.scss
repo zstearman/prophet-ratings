@@ -6,7 +6,7 @@
 body {
   padding-top: 120px;
   // background-color: #eaeaea;
-  @media(min-width: $screen-md-min){
+  @media(min-width: $screen-sm-min){
     .container{
       width: 100%;
     }
@@ -16,6 +16,10 @@ body {
     }
     .logged-out-body{
       margin-top: -20px;
+    }
+    .footer {
+      width: 80%;
+      margin: 20px auto;
     }
   }
 }
@@ -95,17 +99,31 @@ textarea {
     vertical-align: middle;
     padding-top: 20px;
     padding-right: 60px;
-    font-size: 2em;
+    @media(min-width: $screen-sm-min){
+      font-size: 1.6em;
+      @media(min-width: $screen-md-min){
+      font-size: 2em;
+      }
+    }
+    font-size: 1.2em;
     a{
       color: white;
     }
     .dropdown-menu{
+      margin-right: 20px;
       a {
         color: #66666d;
       }
     }
   }
   .subheader {
+    .page-title {
+      height: 50px;
+      color: #0a0d5e;
+      font-size: 1.4em;
+      padding-left: 10%;
+      padding-top: 10px
+    }
     background-color: #66666d;
     ul {
       padding-right: 40px;

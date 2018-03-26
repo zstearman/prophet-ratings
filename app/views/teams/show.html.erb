@@ -1,123 +1,126 @@
-<%= image_tag(@team.team_logo_url, width: '100', :class => 'small_team_logo') %>
-<% @season = @team.team_seasons.find_by(season: current_season) %>
-<h1 class="center"><%= @team.school + " " + @team.name %></h1>
-<% @record = @season.wins.to_s + "-" + @season.losses.to_s %>
-<% @conf_record = @season.conference_wins.to_s + "-" + @season.conference_losses.to_s %>
-<h5 class="center"><%= @record + " (" + @conf_record + ")" %>
-  <span> &#8226; </span><%=@team.conference.try(:name) %>
-</h5>
-<% if current_user.admin? %>
-  <%= link_to 'edit team', edit_team_path(@team), class: "edit-team-link" %>
-<% end %>
-<div class="row">
-  <div class="col-md-6">  
-    <h1 class="center">Team Stats</h1>
-    
-    <table class="table table-sm">
-      <tbody>
+<div class="page-content">
+  <%= image_tag(@team.team_logo_url, width: '100', :class => 'small_team_logo') %>
+  <% provide(:title, @team.school + " " + @team.name) %>
+  <% @season = @team.team_seasons.find_by(season: current_season) %>
+  <h1 class="center"><%= @team.school + " " + @team.name %></h1>
+  <% @record = @season.wins.to_s + "-" + @season.losses.to_s %>
+  <% @conf_record = @season.conference_wins.to_s + "-" + @season.conference_losses.to_s %>
+  <h5 class="center"><%= @record + " (" + @conf_record + ")" %>
+    <span> &#8226; </span><%=@team.conference.try(:name) %>
+  </h5>
+  <% if current_user.admin? %>
+    <%= link_to 'edit team', edit_team_path(@team), class: "edit-team-link" %>
+  <% end %>
+  <div class="row">
+    <div class="col-md-6">  
+      <h1 class="center">Team Stats</h1>
       
-<!--prophet ratings section-->
-        <tr class="thead-dark">
-          <th colspan="2" class="center">Prophet Ratings</th>
-        </tr>
+      <table class="table table-sm">
+        <tbody>
         
-          <tr class="data-row">
-            <th>PTempo</th>
-            <td><%= @season.p_tempo.round(1) %>
-              <small><%= rank("p_tempo", @season.p_tempo) %></small>
-            </td>
+  <!--prophet ratings section-->
+          <tr class="thead-dark">
+            <th colspan="2" class="center">Prophet Ratings</th>
           </tr>
           
-<!--four factors section-->
-        <tr class="thead-dark">
-          <th colspan="2" class="center">Four Factors</th>
-        </tr>
-        
-          <tr class="data-row">
-            <th>Effective FG%</th>
-            <td><%= @season.effective_field_goal_percentage %>
-              <small><%=rank("effective_field_goal_percentage", @season.effective_field_goal_percentage)%></small>
-            </td>
+            <tr class="data-row">
+              <th>PTempo</th>
+              <td><%= @season.p_tempo.round(1) %>
+                <small><%= rank("p_tempo", @season.p_tempo) %></small>
+              </td>
+            </tr>
+            
+  <!--four factors section-->
+          <tr class="thead-dark">
+            <th colspan="2" class="center">Four Factors</th>
           </tr>
           
-          <tr class="data-row">
-            <th>Turnover %</th>
-            <td><%= @season.turnovers_percentage.round(3) %>
-              <small><%= inverse_rank("turnovers_percentage", @season.turnovers_percentage)%></small>
-            </td>
+            <tr class="data-row">
+              <th>Effective FG%</th>
+              <td><%= @season.effective_field_goal_percentage %>
+                <small><%=rank("effective_field_goal_percentage", @season.effective_field_goal_percentage)%></small>
+              </td>
+            </tr>
+            
+            <tr class="data-row">
+              <th>Turnover %</th>
+              <td><%= @season.turnovers_percentage.round(3) %>
+                <small><%= inverse_rank("turnovers_percentage", @season.turnovers_percentage)%></small>
+              </td>
+            </tr>
+            
+            <tr class="data-row">
+              <th>Offensive Rebound %</th>
+              <td>
+              </td>
+            </tr>
+            <tr class="data-row">
+              <th>FTA/FGM</th>
+              <td><%= ( @season.free_throws_attempted / @season.field_goals_attempted.to_f ).round(3) %>
+                <small></small>
+              </td>
+            </tr>
+          <tr class="thead-dark">
+            <th colspan="2" class="center">Shooting</th>
           </tr>
-          
-          <tr class="data-row">
-            <th>Offensive Rebound %</th>
-            <td>
-            </td>
+            <tr class="data-row">
+              <th>FG%</th>
+              <td><%= @season.field_goals_percentage %><small>
+                <%=rank("field_goals_percentage", @season.field_goals_percentage)%></small></td>
+            </tr>
+            <tr class="data-row">
+              <th>2P%</th>
+              <td><%= @season.two_pointers_percentage %><small>
+                <%=rank("two_pointers_percentage", @season.two_pointers_percentage)%></small></td>
+            </tr>
+            <tr class="data-row">
+              <th>3P%</th>
+              <td><%= @season.three_pointers_percentage %><small>
+                <%=rank("three_pointers_percentage", @season.three_pointers_percentage)%></small></td>
+            </tr>
+            <tr class="data-row">
+              <th>FT%</th>
+              <td><%= @season.free_throws_percentage %><small>
+                <%=rank("free_throws_percentage", @season.free_throws_percentage)%></small></td>
+            </tr>
+          <tr class="thead-dark">
+            <th colspan="2" class="center">Style</th>
           </tr>
-          <tr class="data-row">
-            <th>FTA/FGM</th>
-            <td><%= ( @season.free_throws_attempted / @season.field_goals_attempted.to_f ).round(3) %>
-              <small></small>
-            </td>
+            <tr class="data-row">
+              <th>A/FGM</th>
+              <td><%= @season.assists_percentage.round(3) %><small>
+                <%=rank("assists_percentage", @season.assists_percentage)%></small>
+              </td>
+            </tr>
+            <tr class="data-row">
+              <th>3PA/FGA</th>
+              <td><%= (@season.three_pointers_attempted / @season.field_goals_attempted.to_f).round(3) %></td>
+            </tr>
+        </tbody>
+      </table>
+    </div>  
+    
+    <div class="col-md-6">
+      <h1 class="center">Schedule</h1>
+      <table class="table table-sm">
+        <thead>
+          <tr class="thead-dark">
+            <th>Date</th>
+            <th>Game</th>
+            <th>Result</th>
           </tr>
-        <tr class="thead-dark">
-          <th colspan="2" class="center">Shooting</th>
-        </tr>
-          <tr class="data-row">
-            <th>FG%</th>
-            <td><%= @season.field_goals_percentage %><small>
-              <%=rank("field_goals_percentage", @season.field_goals_percentage)%></small></td>
-          </tr>
-          <tr class="data-row">
-            <th>2P%</th>
-            <td><%= @season.two_pointers_percentage %><small>
-              <%=rank("two_pointers_percentage", @season.two_pointers_percentage)%></small></td>
-          </tr>
-          <tr class="data-row">
-            <th>3P%</th>
-            <td><%= @season.three_pointers_percentage %><small>
-              <%=rank("three_pointers_percentage", @season.three_pointers_percentage)%></small></td>
-          </tr>
-          <tr class="data-row">
-            <th>FT%</th>
-            <td><%= @season.free_throws_percentage %><small>
-              <%=rank("free_throws_percentage", @season.free_throws_percentage)%></small></td>
-          </tr>
-        <tr class="thead-dark">
-          <th colspan="2" class="center">Style</th>
-        </tr>
-          <tr class="data-row">
-            <th>A/FGM</th>
-            <td><%= @season.assists_percentage.round(3) %><small>
-              <%=rank("assists_percentage", @season.assists_percentage)%></small>
-            </td>
-          </tr>
-          <tr class="data-row">
-            <th>3PA/FGA</th>
-            <td><%= (@season.three_pointers_attempted / @season.field_goals_attempted.to_f).round(3) %></td>
-          </tr>
-      </tbody>
-    </table>
-  </div>  
+        </thead>
+        <tbody>
+          <% @games.each do |game| %>
+            <tr class="data-row">
+              <td><%= game.date %></td>
+              <td><%= link_to game.opponent_name(@team), game.opponent(@team) %> </td>
+              <td><%= game.outcome(@team) %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
   
-  <div class="col-md-6">
-    <h1 class="center">Schedule</h1>
-    <table class="table table-sm">
-      <thead>
-        <tr class="thead-dark">
-          <th>Date</th>
-          <th>Game</th>
-          <th>Result</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @games.each do |game| %>
-          <tr class="data-row">
-            <td><%= game.date %></td>
-            <td><%= link_to game.opponent_name(@team), game.opponent(@team) %> </td>
-            <td><%= game.outcome(@team) %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-
+    </div>
   </div>
 </div>
