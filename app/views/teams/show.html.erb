@@ -131,9 +131,31 @@
     
   </div>
   
-  <div>
-    <% @team.players.each do |player| %>
-      <%= player.first_name + " " + player.last_name %>
-    <% end %>
+  <div class="team-roster">
+    <h1 class="center">Roster</h1>
+    <table class="table table-sm table-striped">
+      <thead>
+        <tr class="thead-dark">
+          <th>Name</th>
+          <th>#</th>
+          <th>Pos</th>
+          <th>Yr</th>
+          <th>Ht</th>
+          <th>Wt</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @team.players.each do |player| %>
+          <tr class="data-row">
+            <td><%= player.first_name + " " + player.last_name %></td>  
+            <td><%= player.jersey %></td>
+            <td><%= player.position %></td>
+            <td><%= player.year %></td>
+            <td><%= player.height %></td>
+            <td><%= player.weight %></td>
+          </tr>
+        <% end %>  
+      </tbody>
+    </table>
   </div>
 </div>
