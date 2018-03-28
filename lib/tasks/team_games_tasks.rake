@@ -8,11 +8,13 @@ namespace :team_games_tasks do
       @team = Team.find_by(key: team_game["Team"])
       @opponent = Team.find_by(key: team_game["Opponent"])
       @teamseason = TeamSeason.find_by(team: @team, season: @season)
+      @game = Game.find_by(global_game_id: team_game["GameID"])
       currentgame = TeamGame.find_or_initialize_by(global_game_id: team_game["StatID"])
       if currentgame
         currentgame.team = @team
         currentgame.opponent_id = @opponent.id
         currentgame.team_season = @teamseason
+        currentgame.game = @game
         # currentgame.status = game["Status"]
         currentgame.wins = team_game["Wins"]
         currentgame.losses = team_game["Losses"]
@@ -51,6 +53,7 @@ namespace :team_games_tasks do
         currentgame.points = team_game["Points"]
         currentgame.true_shooting_percentage = team_game["TrueShootingPercentage"]
         currentgame.true_shooting_attempts = team_game["TrueShootingAttempts"]
+        currentgame.opponent_game_id = @game.team_games.find_by(opponent_key: team_game["Team"]).id
         if team_game["Day"]
           currentgame.day = Date.strptime(team_game["Day"], '%m/%d/%Y')
           currentgame.date_time = DateTime.strptime(team_game["DateTime"], '%m/%d/%Y %I:%M:%S %p')

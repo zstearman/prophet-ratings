@@ -9,7 +9,7 @@ namespace :games_tasks do
       @awayteam = Team.find_by(key: game["AwayTeam"])
       @hometeamseason = TeamSeason.find_by(team: @hometeam, season: @season)
       @awayteamseason = TeamSeason.find_by(team: @awayteam, season: @season)
-      currentgame = Game.find_or_initialize_by(global_game_id: game["GlobalGameID"])
+      currentgame = Game.find_or_initialize_by(global_game_id: game["GameID"])
       if currentgame
         currentgame.home_team = @hometeam
         currentgame.away_team = @awayteam
@@ -32,7 +32,6 @@ namespace :games_tasks do
         currentgame.round = game["Round"]
         currentgame.away_seed = game["AwaySeed"]
         currentgame.home_seed = game["HomeSeed"]
-        currentgame.global_game_id = game["GlobalGameID"]
         currentgame.away_previous_global_game_id = game["AwayPreviousGlobalGameID"]
         currentgame.home_previous_global_game_id = game["HomePreviousGlobalGameID"]
         currentgame.tournament_display_order = game["TournamentDisplayOrder"]

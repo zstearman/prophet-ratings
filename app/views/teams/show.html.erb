@@ -79,7 +79,8 @@
             
             <tr class="data-row">
               <th>Offensive Rebound %</th>
-              <td>
+              <td><%= @season.offensive_rebounds_percentage.round(3) %>
+                <small><%= rank("offensive_rebounds_percentage", @season.offensive_rebounds_percentage)%></small>
               </td>
             </tr>
             <tr class="data-row">

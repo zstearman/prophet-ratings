@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180327031634) do
+ActiveRecord::Schema.define(version: 20180328030405) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -147,6 +147,7 @@ ActiveRecord::Schema.define(version: 20180327031634) do
     t.decimal "true_shooting_percentage"
     t.integer "season"
     t.integer "global_game_id"
+    t.integer "opponent_game_id"
     t.index ["game_id"], name: "index_team_games_on_game_id"
     t.index ["team_id"], name: "index_team_games_on_team_id"
     t.index ["team_season_id"], name: "index_team_games_on_team_season_id"
@@ -205,6 +206,7 @@ ActiveRecord::Schema.define(version: 20180327031634) do
     t.integer "season_type"
     t.integer "global_team_season_id"
     t.decimal "assists_percentage"
+    t.decimal "three_pointers_per_field_goal_attempted"
     t.index ["season_id"], name: "index_team_seasons_on_season_id"
     t.index ["team_id", "season_id"], name: "index_team_seasons_on_team_id_and_season_id"
     t.index ["team_id"], name: "index_team_seasons_on_team_id"
@@ -222,6 +224,7 @@ ActiveRecord::Schema.define(version: 20180327031634) do
     t.integer "global_team_id"
     t.integer "ap_rank"
     t.index ["conference_id"], name: "index_teams_on_conference_id"
+    t.index ["key"], name: "index_teams_on_key", unique: true
     t.index ["school"], name: "index_teams_on_school"
   end
 

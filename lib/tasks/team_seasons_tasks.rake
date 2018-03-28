@@ -64,4 +64,27 @@ namespace :team_seasons_tasks do
     puts x.to_s + " team seasons added or updated."
   end
 
+  task team_seasons_calculations: :environment do
+    x = 0
+    @team_seasons = TeamSeason.all.each do |team_season|
+      offensive_rebounds = 0
+      defensive_rebounds = 0
+      offensive_rebounds_allowed = 0
+      defensive_rebounds_allowed = 0
+      team_games = team_season.team_game.all
+      team_games.each do |game|
+        opponent_game = TeamGame.find(game.opponent_game_id)
+        offensive_rebounds += game.offensive_rebounds
+        defensive_rebounds += game.defensive_rebounds
+        offensive_rebounds_allowed += opponent_game.offensive_rebounds
+        defensive_rebounds_allowed += opponent_game.defensive_rebounds
+      end
+      team_season.offensive_rebounds_percentage = (offensive_rebounds.to_f / (offensive_rebounds + defensive_rebounds_allowed))
+      team_season.defensive_rebounds_percentage = (defensive_rebounds.to_f / (defensive_rebounds + offensive_rebounds_allowed))
+      team_season.total_rebounds_percentage = ((offensive_rebounds.to_f + defensive_rebounds) / (offensive_rebounds + offensive_rebounds_allowed + defensive_rebounds + defensive_rebounds_allowed))
+      team_season.save
+      x += 1
+    end
+    puts x.to_s + " seasons calculations performed."
+  end
 end
