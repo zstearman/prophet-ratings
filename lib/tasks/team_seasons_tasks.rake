@@ -66,25 +66,41 @@ namespace :team_seasons_tasks do
 
   task team_seasons_calculations: :environment do
     x = 0
+    y = 0 
+    z = 0
     @team_seasons = TeamSeason.all.each do |team_season|
       offensive_rebounds = 0
       defensive_rebounds = 0
       offensive_rebounds_allowed = 0
       defensive_rebounds_allowed = 0
+      opponent_possessions = 0
+      blocks = 0
+      steals = 0
       team_games = team_season.team_game.all
       team_games.each do |game|
+        y += 1
         opponent_game = TeamGame.find(game.opponent_game_id)
         offensive_rebounds += game.offensive_rebounds
         defensive_rebounds += game.defensive_rebounds
         offensive_rebounds_allowed += opponent_game.offensive_rebounds
         defensive_rebounds_allowed += opponent_game.defensive_rebounds
+        if opponent_game.possessions
+          opponent_possessions += opponent_game.possessions
+          blocks += game.blocked_shots
+          steals += game.steals
+          z += 1
+        end
       end
       team_season.offensive_rebounds_percentage = (offensive_rebounds.to_f / (offensive_rebounds + defensive_rebounds_allowed))
       team_season.defensive_rebounds_percentage = (defensive_rebounds.to_f / (defensive_rebounds + offensive_rebounds_allowed))
       team_season.total_rebounds_percentage = ((offensive_rebounds.to_f + defensive_rebounds) / (offensive_rebounds + offensive_rebounds_allowed + defensive_rebounds + defensive_rebounds_allowed))
+      team_season.free_throws_per_field_goal_attempted = team_season.free_throws_attempted.to_f / team_season.field_goals_attempted
+      team_season.three_pointers_per_field_goal_attempted = team_season.three_pointers_attempted.to_f / team_season.field_goals_attempted
+      team_season.blocks_percentage = blocks.to_f / opponent_possessions
+      team_season.steals_percentage = steals.to_f / opponent_possessions
       team_season.save
       x += 1
     end
-    puts x.to_s + " seasons calculations performed."
+    puts x.to_s + " seasons calculations performed. " + (z.to_f/y).to_s + " percent of games had possessions."
   end
 end

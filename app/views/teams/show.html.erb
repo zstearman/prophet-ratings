@@ -85,8 +85,8 @@
             </tr>
             <tr class="data-row">
               <th>FTA/FGM</th>
-              <td><%= ( @season.free_throws_attempted / @season.field_goals_attempted.to_f ).round(3) %>
-                <small></small>
+              <td><%= ( @season.free_throws_per_field_goal_attempted ).round(3) %>
+                <small><%= rank("free_throws_per_field_goal_attempted", @season.free_throws_per_field_goal_attempted)%></small>
               </td>
             </tr>
           <tr class="thead-dark">
@@ -123,7 +123,39 @@
             </tr>
             <tr class="data-row">
               <th>3PA/FGA</th>
-              <td><%= (@season.three_pointers_attempted / @season.field_goals_attempted.to_f).round(3) %></td>
+              <td><%= (@season.three_pointers_per_field_goal_attempted).round(3) %>
+                <small><%=rank("three_pointers_per_field_goal_attempted", @season.three_pointers_per_field_goal_attempted)%></small>
+              </td>
+            </tr>
+          <tr class="thead-dark">
+            <th colspan="2" class="center">Rebounding</th>
+          </tr>
+            <tr class="data-row">
+              <th>Defensive Rebound %</th>
+              <td><%= @season.defensive_rebounds_percentage.round(3) %><small>
+                <%=rank("defensive_rebounds_percentage", @season.defensive_rebounds_percentage)%></small>
+              </td>
+            </tr>
+            <tr class="data-row">
+              <th>Total Rebound %</th>
+              <td><%= (@season.total_rebounds_percentage).round(3) %>
+                <small><%=rank("total_rebounds_percentage", @season.total_rebounds_percentage)%></small>
+              </td>
+            </tr>
+            <tr class="thead-dark">
+            <th colspan="2" class="center">Defense</th>
+          </tr>
+            <tr class="data-row">
+              <th>Steal %</th>
+              <td><%= @season.steals_percentage.round(3) %><small>
+                <%=rank("steals_percentage", @season.steals_percentage)%></small>
+              </td>
+            </tr>
+            <tr class="data-row">
+              <th>Blocks %</th>
+              <td><%= (@season.blocks_percentage).round(3) %>
+                <small><%=rank("blocks_percentage", @season.blocks_percentage)%></small>
+              </td>
             </tr>
         </tbody>
       </table>
