@@ -20,6 +20,14 @@ one:
   field_goals_attempted: 100
   assists_percentage: 10
   three_pointers_attempted: 10
+  assists_percentage: 10
+  three_pointers_per_field_goal_attempted: 10
+  free_throws_per_field_goal_attempted: 10
+  offensive_rebounds_percentage: 10
+  defensive_rebounds_percentage: 10
+  total_rebounds_percentage: 10
+  steals_percentage: 10
+  blocks_percentage: 10
   
   
 
@@ -43,3 +51,12 @@ two:
   field_goals_attempted: 100
   assists_percentage: 10
   three_pointers_attempted: 10
+  assists_percentage: 10
+  three_pointers_per_field_goal_attempted: 10
+  free_throws_per_field_goal_attempted: 10
+  offensive_rebounds_percentage: 10
+  defensive_rebounds_percentage: 10
+  total_rebounds_percentage: 10
+  steals_percentage: 10
+  blocks_percentage: 10
+  
