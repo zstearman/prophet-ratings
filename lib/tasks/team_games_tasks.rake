@@ -53,7 +53,7 @@ namespace :team_games_tasks do
         currentgame.points = team_game["Points"]
         currentgame.true_shooting_percentage = team_game["TrueShootingPercentage"]
         currentgame.true_shooting_attempts = team_game["TrueShootingAttempts"]
-        currentgame.opponent_game_id = @game.team_games.find_by(opponent_key: team_game["Team"]).id
+        # currentgame.opponent_game_id = @game.team_games.find_by(opponent_key: team_game["Team"]).id
         if team_game["Day"]
           currentgame.day = Date.strptime(team_game["Day"], '%m/%d/%Y')
           currentgame.date_time = DateTime.strptime(team_game["DateTime"], '%m/%d/%Y %I:%M:%S %p')
@@ -70,6 +70,14 @@ namespace :team_games_tasks do
         end
       else
         puts game
+      end
+    end
+    TeamGame.all.each do |team_game|
+      if team_game.game
+        @game = team_game.game
+        @opponent_game = @game.team_games.find_by(opponent_key: team_game.team.key)
+        team_game.opponent_game_id = @opponent_game.id
+        team_game.save
       end
     end
     puts x.to_s + " games added or updated."
