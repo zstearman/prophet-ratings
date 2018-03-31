@@ -63,6 +63,41 @@ namespace :team_seasons_tasks do
     end
     puts x.to_s + " team seasons added or updated."
   end
+  
+  task allowed_seasons_calculations: :environment do
+    x = 0
+    TeamSeason.all.each do |team_season|
+      minutes = 0
+      field_goals_made = 0 
+      field_goals_attempted = 0 
+      field_goals_percentage = 0 
+      two_pointers_made = 0
+      two_pointers_attempted = 0
+      two_pointers_percentage = 0
+      allowed_season = AllowedSeason.find_or_initialize_by(team_season: team_season)
+      allowed_season.school = team_season.team.school
+      games = team_season.team_game.count
+      team_season.team_game.each do |team_game|
+        opponent_game = TeamGame.find(team_game.opponent_game_id)
+        field_goals_made += opponent_game.field_goals_made
+        field_goals_attempted += opponent_game.field_goals_attempted
+        two_pointers_made += opponent_game.two_pointers_made
+        two_pointers_attempted += opponent_game.two_pointers_attempted
+      end
+      allowed_season.field_goals_made = field_goals_made
+      allowed_season.field_goals_attempted = field_goals_attempted
+      allowed_season.field_goals_percentage = (field_goals_made.to_f / field_goals_attempted) * 100
+      allowed_season.two_pointers_made = two_pointers_made
+      allowed_season.two_pointers_attempted = two_pointers_attempted
+      allowed_season.two_pointers_percentage = (two_pointers_made.to_f / two_pointers_attempted) * 100
+      if allowed_season.save
+        x += 1
+      else
+        puts "Allowed Season for " + allowed_season.school + " cannot be saved."
+      end
+    end
+    puts x.to_s + " allowed seasons added or updated."
+  end
 
   task team_seasons_calculations: :environment do
     x = 0

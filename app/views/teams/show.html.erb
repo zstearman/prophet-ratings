@@ -96,11 +96,17 @@
               <th>FG%</th>
               <td><%= @season.field_goals_percentage %><small>
                 <%=rank("field_goals_percentage", @season.field_goals_percentage)%></small></td>
+              <td><%= @allowed.field_goals_percentage.round(1) %>
+                <small><%= allowed_inverse_rank("field_goals_percentage", @allowed.field_goals_percentage)%></small>
+              </td>
             </tr>
             <tr class="data-row">
               <th>2P%</th>
               <td><%= @season.two_pointers_percentage %><small>
                 <%=rank("two_pointers_percentage", @season.two_pointers_percentage)%></small></td>
+              <td><%= @allowed.two_pointers_percentage.round(1) %>
+                <small><%= allowed_inverse_rank("two_pointers_percentage", @allowed.two_pointers_percentage)%></small>
+              </td>
             </tr>
             <tr class="data-row">
               <th>3P%</th>
