@@ -74,6 +74,12 @@ namespace :team_seasons_tasks do
       two_pointers_made = 0
       two_pointers_attempted = 0
       two_pointers_percentage = 0
+      three_pointers_made = 0
+      three_pointers_attempted = 0
+      three_pointers_percentage = 0
+      free_throws_made = 0
+      free_throws_attempted = 0
+      free_throws_percentage = 0
       allowed_season = AllowedSeason.find_or_initialize_by(team_season: team_season)
       allowed_season.school = team_season.team.school
       games = team_season.team_game.count
@@ -83,6 +89,11 @@ namespace :team_seasons_tasks do
         field_goals_attempted += opponent_game.field_goals_attempted
         two_pointers_made += opponent_game.two_pointers_made
         two_pointers_attempted += opponent_game.two_pointers_attempted
+        three_pointers_made += opponent_game.three_pointers_made
+        three_pointers_attempted += opponent_game.three_pointers_attempted
+        free_throws_made += opponent_game.free_throws_made
+        free_throws_attempted += opponent_game.free_throws_attempted
+        free_throws_percentage += opponent_game.free_throws_percentage
       end
       allowed_season.field_goals_made = field_goals_made
       allowed_season.field_goals_attempted = field_goals_attempted
@@ -90,6 +101,12 @@ namespace :team_seasons_tasks do
       allowed_season.two_pointers_made = two_pointers_made
       allowed_season.two_pointers_attempted = two_pointers_attempted
       allowed_season.two_pointers_percentage = (two_pointers_made.to_f / two_pointers_attempted) * 100
+      allowed_season.three_pointers_made = three_pointers_made
+      allowed_season.three_pointers_attempted = three_pointers_attempted
+      allowed_season.three_pointers_percentage = (three_pointers_made.to_f / three_pointers_attempted) * 100
+      allowed_season.free_throws_made = free_throws_made
+      allowed_season.free_throws_attempted = free_throws_attempted
+      allowed_season.free_throws_percentage = (free_throws_made.to_f / free_throws_attempted) * 100
       if allowed_season.save
         x += 1
       else

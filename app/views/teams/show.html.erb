@@ -45,10 +45,15 @@
       
       <table class="table table-sm table-striped">
         <tbody>
+          <tr>
+            <th></th>
+            <th>Own</th>
+            <th>Allowed</th>
+          </tr>
         
   <!--prophet ratings section-->
           <tr class="thead-dark">
-            <th colspan="2" class="center">Prophet Ratings</th>
+            <th colspan="3" class="center">Prophet Ratings</th>
           </tr>
           
             <tr class="data-row">
@@ -60,7 +65,7 @@
             
   <!--four factors section-->
           <tr class="thead-dark">
-            <th colspan="2" class="center">Four Factors</th>
+            <th colspan="3" class="center">Four Factors</th>
           </tr>
           
             <tr class="data-row">
@@ -90,7 +95,7 @@
               </td>
             </tr>
           <tr class="thead-dark">
-            <th colspan="2" class="center">Shooting</th>
+            <th colspan="3" class="center">Shooting</th>
           </tr>
             <tr class="data-row">
               <th>FG%</th>
@@ -112,14 +117,18 @@
               <th>3P%</th>
               <td><%= @season.three_pointers_percentage %><small>
                 <%=rank("three_pointers_percentage", @season.three_pointers_percentage)%></small></td>
+              <td><%= @allowed.three_pointers_percentage.round(1) %>
+                <small><%=allowed_inverse_rank("three_pointers_percentage", @allowed.three_pointers_percentage)%></small></td>
             </tr>
             <tr class="data-row">
               <th>FT%</th>
               <td><%= @season.free_throws_percentage %><small>
                 <%=rank("free_throws_percentage", @season.free_throws_percentage)%></small></td>
+              <td><%= @allowed.free_throws_percentage.round(1)%>
+                <small><%= allowed_inverse_rank("free_throws_percentage", @allowed.free_throws_percentage)%></small></td>
             </tr>
           <tr class="thead-dark">
-            <th colspan="2" class="center">Style</th>
+            <th colspan="3" class="center">Style</th>
           </tr>
             <tr class="data-row">
               <th>A/FGM</th>
@@ -134,7 +143,7 @@
               </td>
             </tr>
           <tr class="thead-dark">
-            <th colspan="2" class="center">Rebounding</th>
+            <th colspan="3" class="center">Rebounding</th>
           </tr>
             <tr class="data-row">
               <th>Defensive Rebound %</th>
@@ -149,7 +158,7 @@
               </td>
             </tr>
             <tr class="thead-dark">
-            <th colspan="2" class="center">Defense</th>
+            <th colspan="3" class="center">Defense</th>
           </tr>
             <tr class="data-row">
               <th>Steal %</th>
