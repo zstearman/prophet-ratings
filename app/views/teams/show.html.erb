@@ -46,9 +46,9 @@
       <table class="table table-sm table-striped">
         <tbody>
           <tr>
-            <th></th>
-            <th>Own</th>
-            <th>Allowed</th>
+            <th>Statistic</th>
+            <th>Value <small>Rk</small></th>
+            <th>Allowed <small>Rk</small></th>
           </tr>
         
   <!--prophet ratings section-->
@@ -89,10 +89,12 @@
               </td>
             </tr>
             <tr class="data-row">
-              <th>FTA/FGM</th>
+              <th>FTA/FGA</th>
               <td><%= ( @season.free_throws_per_field_goal_attempted ).round(3) %>
                 <small><%= rank("free_throws_per_field_goal_attempted", @season.free_throws_per_field_goal_attempted)%></small>
               </td>
+              <td><%= (@allowed.free_throws_per_field_goal_attempted ).round(3) %>
+                <small><%= allowed_inverse_rank("free_throws_per_field_goal_attempted", @allowed.free_throws_per_field_goal_attempted) %></small></td>
             </tr>
           <tr class="thead-dark">
             <th colspan="3" class="center">Shooting</th>
@@ -140,6 +142,9 @@
               <th>3PA/FGA</th>
               <td><%= (@season.three_pointers_per_field_goal_attempted).round(3) %>
                 <small><%=rank("three_pointers_per_field_goal_attempted", @season.three_pointers_per_field_goal_attempted)%></small>
+              </td>
+              <td><%= @allowed.three_pointers_per_field_goal_attempted.round(3) %>
+                <small><%= allowed_inverse_rank("three_pointers_per_field_goal_attempted", @allowed.three_pointers_per_field_goal_attempted)%></small>
               </td>
             </tr>
           <tr class="thead-dark">

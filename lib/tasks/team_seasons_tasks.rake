@@ -107,6 +107,8 @@ namespace :team_seasons_tasks do
       allowed_season.free_throws_made = free_throws_made
       allowed_season.free_throws_attempted = free_throws_attempted
       allowed_season.free_throws_percentage = (free_throws_made.to_f / free_throws_attempted) * 100
+      allowed_season.free_throws_per_field_goal_attempted = (free_throws_attempted.to_f / field_goals_attempted)
+      allowed_season.three_pointers_per_field_goal_attempted = ( three_pointers_attempted.to_f / field_goals_attempted)
       if allowed_season.save
         x += 1
       else
