@@ -80,6 +80,18 @@ namespace :team_seasons_tasks do
       free_throws_made = 0
       free_throws_attempted = 0
       free_throws_percentage = 0
+      assists = 0
+      possessions = 0
+      turnovers = 0
+      steals = 0
+      blocks = 0
+      team_possessions = 0
+      offensive_rebounds = 0
+      defensive_rebounds = 0
+      total_rebounds = 0
+      offensive_rebounds_allowed = 0
+      defensive_rebounds_allowed = 0
+      total_rebounds_allowed = 0
       allowed_season = AllowedSeason.find_or_initialize_by(team_season: team_season)
       allowed_season.school = team_season.team.school
       games = team_season.team_game.count
@@ -94,6 +106,20 @@ namespace :team_seasons_tasks do
         free_throws_made += opponent_game.free_throws_made
         free_throws_attempted += opponent_game.free_throws_attempted
         free_throws_percentage += opponent_game.free_throws_percentage
+        assists += opponent_game.assists
+        offensive_rebounds = opponent_game.offensive_rebounds
+        defensive_rebounds = opponent_game.defensive_rebounds
+        total_rebounds = opponent_game.rebounds
+        offensive_rebounds_allowed = team_game.offensive_rebounds
+        defensive_rebounds_allowed = team_game.defensive_rebounds
+        total_rebounds_allowed = team_game.rebounds
+        if opponent_game.possessions
+          possessions += opponent_game.possessions
+          turnovers += opponent_game.turnovers
+          blocks += opponent_game.blocked_shots
+          steals += opponent_game.steals
+          team_possessions += team_game.possessions
+        end
       end
       allowed_season.field_goals_made = field_goals_made
       allowed_season.field_goals_attempted = field_goals_attempted
@@ -109,6 +135,14 @@ namespace :team_seasons_tasks do
       allowed_season.free_throws_percentage = (free_throws_made.to_f / free_throws_attempted) * 100
       allowed_season.free_throws_per_field_goal_attempted = (free_throws_attempted.to_f / field_goals_attempted)
       allowed_season.three_pointers_per_field_goal_attempted = ( three_pointers_attempted.to_f / field_goals_attempted)
+      allowed_season.assists_percentage = (assists.to_f / field_goals_made)
+      allowed_season.turnovers_percentage = (turnovers.to_f / possessions)
+      allowed_season.effective_field_goal_percentage = ((field_goals_made.to_f + (0.5 * three_pointers_made))/ field_goals_attempted) * 100
+      allowed_season.steals_percentage = (steals.to_f / team_possessions)
+      allowed_season.blocks_percentage = blocks.to_f / team_possessions
+      allowed_season.offensive_rebounds_percentage = (offensive_rebounds.to_f / (offensive_rebounds + defensive_rebounds_allowed))
+      allowed_season.defensive_rebounds_percentage = (defensive_rebounds.to_f / (defensive_rebounds + offensive_rebounds_allowed))
+      allowed_season.total_rebounds_percentage = (total_rebounds.to_f / (total_rebounds + total_rebounds_allowed))
       if allowed_season.save
         x += 1
       else

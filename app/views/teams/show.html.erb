@@ -73,6 +73,9 @@
               <td><%= @season.effective_field_goal_percentage %>
                 <small><%=rank("effective_field_goal_percentage", @season.effective_field_goal_percentage)%></small>
               </td>
+              <td><%= @allowed.effective_field_goal_percentage.round(1) %>
+                <small><%= allowed_inverse_rank("effective_field_goal_percentage", @allowed.effective_field_goal_percentage)%></small>
+              </td>
             </tr>
             
             <tr class="data-row">
@@ -80,12 +83,18 @@
               <td><%= @season.turnovers_percentage.round(3) %>
                 <small><%= inverse_rank("turnovers_percentage", @season.turnovers_percentage)%></small>
               </td>
+              <td><%= @allowed.turnovers_percentage.round(3) %>
+                <small><%= allowed_rank("turnovers_percentage", @allowed.turnovers_percentage)%></small>
+              </td>
             </tr>
             
             <tr class="data-row">
               <th>Offensive Rebound %</th>
               <td><%= @season.offensive_rebounds_percentage.round(3) %>
                 <small><%= rank("offensive_rebounds_percentage", @season.offensive_rebounds_percentage)%></small>
+              </td>
+              <td><%= @allowed.offensive_rebounds_percentage.round(3) %>
+                <small><%= allowed_inverse_rank("offensive_rebounds_percentage", @allowed.offensive_rebounds_percentage) %></small>
               </td>
             </tr>
             <tr class="data-row">
@@ -137,6 +146,9 @@
               <td><%= @season.assists_percentage.round(3) %><small>
                 <%=rank("assists_percentage", @season.assists_percentage)%></small>
               </td>
+              <td><%= @allowed.assists_percentage.round(3) %>
+                <small><%= allowed_inverse_rank( "assists_percentage", @allowed.assists_percentage)%></small>
+              </td>
             </tr>
             <tr class="data-row">
               <th>3PA/FGA</th>
@@ -155,11 +167,17 @@
               <td><%= @season.defensive_rebounds_percentage.round(3) %><small>
                 <%=rank("defensive_rebounds_percentage", @season.defensive_rebounds_percentage)%></small>
               </td>
+              <td><%= @allowed.defensive_rebounds_percentage.round(3) %>
+                <small><%= allowed_inverse_rank("defensive_rebounds_percentage", @allowed.defensive_rebounds_percentage) %></small>
+              </td>
             </tr>
             <tr class="data-row">
               <th>Total Rebound %</th>
               <td><%= (@season.total_rebounds_percentage).round(3) %>
                 <small><%=rank("total_rebounds_percentage", @season.total_rebounds_percentage)%></small>
+              </td>
+              <td><%= @allowed.total_rebounds_percentage.round(3) %>
+                <small><%= allowed_inverse_rank("total_rebounds_percentage", @allowed.total_rebounds_percentage) %></small>
               </td>
             </tr>
             <tr class="thead-dark">
@@ -170,11 +188,17 @@
               <td><%= @season.steals_percentage.round(3) %><small>
                 <%=rank("steals_percentage", @season.steals_percentage)%></small>
               </td>
+              <td><%= @allowed.steals_percentage.round(3) %>
+                <small><%= allowed_inverse_rank("steals_percentage", @allowed.steals_percentage) %></small>
+              </td>
             </tr>
             <tr class="data-row">
               <th>Blocks %</th>
               <td><%= (@season.blocks_percentage).round(3) %>
                 <small><%=rank("blocks_percentage", @season.blocks_percentage)%></small>
+              </td>
+              <td><%= @allowed.blocks_percentage.round(3) %>
+                <small><%= allowed_inverse_rank("blocks_percentage", @allowed.blocks_percentage) %></small>
               </td>
             </tr>
         </tbody>
