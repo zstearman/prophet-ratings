@@ -6,6 +6,7 @@ class TeamSeason < ApplicationRecord
   belongs_to :team
   has_many :game
   has_many :team_game
+  has_one :prophet_rating
   validates :team_id, presence: true
   validates :season_id, presence: true
 end

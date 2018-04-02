@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180329210945) do
+ActiveRecord::Schema.define(version: 20180402171926) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -135,6 +135,16 @@ ActiveRecord::Schema.define(version: 20180329210945) do
     t.string "high_school"
     t.index ["global_player_id"], name: "index_players_on_global_player_id"
     t.index ["team_id"], name: "index_players_on_team_id"
+  end
+
+  create_table "prophet_ratings", force: :cascade do |t|
+    t.bigint "team_season_id"
+    t.decimal "p_ortg"
+    t.decimal "p_drtg"
+    t.decimal "p_tempo"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["team_season_id"], name: "index_prophet_ratings_on_team_season_id"
   end
 
   create_table "seasons", force: :cascade do |t|
@@ -303,6 +313,7 @@ ActiveRecord::Schema.define(version: 20180329210945) do
   add_foreign_key "games", "teams", column: "away_team_id"
   add_foreign_key "games", "teams", column: "home_team_id"
   add_foreign_key "players", "teams"
+  add_foreign_key "prophet_ratings", "team_seasons"
   add_foreign_key "team_games", "games"
   add_foreign_key "team_games", "team_seasons"
   add_foreign_key "team_games", "teams"

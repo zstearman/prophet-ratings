@@ -12,7 +12,8 @@
               <th scope="col"><%= sort_asc_link "school" %></th>
               <th scope="col"><%= sort_link "wins", "W-L" %></th>
               <th scope="col">Conf</th>
-              <th scope="col">conference losses</th>
+              <th scope="col">PORtg</th>
+              <th scope="col">PDrtg</th>
             </tr>
           <% end %>
           <tr class="data-row">
@@ -25,7 +26,8 @@
             <% else %>
               <td></td>
             <% end %>
-            <td><%= season.conference_losses %></td>
+            <td><%= season.prophet_rating.p_ortg.round(1) %></td>
+            <td><%= season.prophet_rating.p_drtg.round(1) %></td>
           </tr>
         <% end %>
       <% end %>

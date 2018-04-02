@@ -55,7 +55,18 @@
           <tr class="thead-dark">
             <th colspan="3" class="center">Prophet Ratings</th>
           </tr>
-          
+            <tr class="data_row">
+              <th>PORtg</th>
+              <td><%= @p_rtg.p_ortg.round(1) %>
+                <small><%= prophet_rank("p_ortg", @p_rtg.p_ortg)%></small>
+              </td>
+            </tr>
+            <tr class="data_row">
+              <th>PDRtg</th>
+              <td><%= @p_rtg.p_drtg.round(1) %>
+                <small><%= prophet_inverse_rank("p_drtg", @p_rtg.p_drtg)%></small>
+              </td>
+            </tr>
             <tr class="data-row">
               <th>PTempo</th>
               <td><%= @season.p_tempo.round(1) %>

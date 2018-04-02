@@ -44,6 +44,7 @@ class TeamsController < ApplicationController
     @team = Team.find(params[:id])
     @season = @team.team_seasons.find_by(season: current_season)
     @allowed = AllowedSeason.find_by(team_season: @season)
+    @p_rtg = ProphetRating.find_by(team_season: @season)
     @home_games = @season.home_games.all
     @away_games = @season.away_games.all
     @games = @home_games + @away_games
