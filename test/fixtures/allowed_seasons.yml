@@ -1,11 +1,51 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-# This model initially had no columns defined. If you add columns to the
-# model remove the '{}' from the fixture names and add the columns immediately
-# below each fixture, per the syntax in the comments below
-#
-one: {}
-# column: value
-#
-two: {}
-# column: value
+allowed_one:
+  possessions: 200
+  rebounds: 1000
+  games: 25
+  turnovers_percentage: 10
+  free_throws_attempted: 10
+  field_goals_attempted: 100
+  assists_percentage: 10
+  three_pointers_attempted: 10
+  assists_percentage: 10
+  three_pointers_per_field_goal_attempted: 10
+  free_throws_per_field_goal_attempted: 10
+  offensive_rebounds_percentage: 10
+  defensive_rebounds_percentage: 10
+  total_rebounds_percentage: 10
+  steals_percentage: 10
+  blocks_percentage: 10
+  team_season: one
+  effective_field_goal_percentage: 30.2
+  field_goals_percentage: 50
+  two_pointers_percentage: 50
+  three_pointers_percentage: 40
+  free_throws_percentage: 70
+  
+  
+
+allowed_two:
+  possessions: 9.99
+  rebounds: 1000
+  games: 25
+  turnovers_percentage: 10
+  free_throws_attempted: 10
+  field_goals_attempted: 100
+  assists_percentage: 10
+  three_pointers_attempted: 10
+  assists_percentage: 10
+  three_pointers_per_field_goal_attempted: 10
+  free_throws_per_field_goal_attempted: 10
+  offensive_rebounds_percentage: 10
+  defensive_rebounds_percentage: 10
+  total_rebounds_percentage: 10
+  steals_percentage: 10
+  blocks_percentage: 10
+  team_season: two
+  effective_field_goal_percentage: 35.8
+  field_goals_percentage: 50
+  two_pointers_percentage: 50
+  three_pointers_percentage: 40
+  free_throws_percentage: 70

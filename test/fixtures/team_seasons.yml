@@ -1,10 +1,6 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  wins: 1
-  losses: 1
-  conference_wins: 10
-  conference_losses: 2
   possessions: 200
   season: 2018
   team: sooners
@@ -32,10 +28,6 @@ one:
   
 
 two:
-  wins: 1
-  losses: 1
-  conference_wins: 1
-  conference_losses: MyString
   possessions: 9.99
   season: 2018
   team: jayhawks
@@ -59,4 +51,3 @@ two:
   total_rebounds_percentage: 10
   steals_percentage: 10
   blocks_percentage: 10
-  
