@@ -20,7 +20,6 @@ namespace :team_games_tasks do
         currentgame.losses = team_game["Losses"]
         currentgame.conference_wins = team_game["ConferenceWins"]
         currentgame.conference_losses = team_game["ConferenceLosses"]
-        currentgame.possessions = team_game["Possessions"]
         currentgame.opponent_key = team_game["Opponent"]
         if team_game["HomeOrAway"] == "HOME"
           currentgame.home = true
@@ -53,6 +52,7 @@ namespace :team_games_tasks do
         currentgame.points = team_game["Points"]
         currentgame.true_shooting_percentage = team_game["TrueShootingPercentage"]
         currentgame.true_shooting_attempts = team_game["TrueShootingAttempts"]
+        currentgame.possessions = currentgame.field_goals_attempted - currentgame.offensive_rebounds + currentgame.turnovers + ( 0.42 * currentgame.free_throws_attempted)
         # currentgame.opponent_game_id = @game.team_games.find_by(opponent_key: team_game["Team"]).id
         if team_game["Day"]
           currentgame.day = Date.strptime(team_game["Day"], '%m/%d/%Y')
