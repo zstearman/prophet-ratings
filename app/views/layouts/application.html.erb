@@ -23,7 +23,9 @@
     <%= render 'layouts/header/login' %>
   <% elsif logged_in? %>
     <%= render 'layouts/header/loggedin' %>
-  <% elsif %>
+  <% elsif controller_name == "static_pages" && action_name == "coming_soon" %>
+  
+  <% else %>
     <%= render 'layouts/header/loggedout' %>
   <% end %>
   <body>
@@ -32,8 +34,11 @@
         <div class="alert alert-<%= message_type %>"><%= message %></div>
       <% end %>
       <%= yield %> 
-      <%= render 'layouts/header/footer' %>
-      <%= debug(params) if Rails.env.development? %>
+      
+      <% unless controller_name == "static_pages" && action_name == "coming_soon" %>
+        <%= render 'layouts/header/footer' %>
+        <%= debug(params) if Rails.env.development? %>
+      <% end %>
     </div>
     <!--<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>-->
     <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>-->
