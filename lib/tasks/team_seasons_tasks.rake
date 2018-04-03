@@ -186,7 +186,11 @@ namespace :team_seasons_tasks do
       team_season.three_pointers_per_field_goal_attempted = team_season.three_pointers_attempted.to_f / team_season.field_goals_attempted
       team_season.blocks_percentage = blocks.to_f / opponent_possessions
       team_season.steals_percentage = steals.to_f / opponent_possessions
-      team_season.save
+      if team_season.team.active?
+        team_season.save
+      else
+        # team_season.delete
+      end
       x += 1
     end
     puts x.to_s + " seasons calculations performed. " + (z.to_f/y).to_s + " percent of games had possessions."

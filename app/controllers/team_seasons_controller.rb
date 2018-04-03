@@ -13,11 +13,11 @@ class TeamSeasonsController < ApplicationController
   
   private
     def sortable_columns
-      ["school", "wins"]
+      ["school", "wins", "p_rtg", "p_ortg", "p_drtg", "p_tempo"]
     end
     
     def sort_column
-      sortable_columns.include?(params[:column]) ? params[:column] : "wins"
+      sortable_columns.include?(params[:column]) ? params[:column] : "p_rtg"
     end
   
     def sort_direction

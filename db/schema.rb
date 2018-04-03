@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180402171926) do
+ActiveRecord::Schema.define(version: 20180403150755) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -144,6 +144,7 @@ ActiveRecord::Schema.define(version: 20180402171926) do
     t.decimal "p_tempo"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.decimal "p_rtg"
     t.index ["team_season_id"], name: "index_prophet_ratings_on_team_season_id"
   end
 

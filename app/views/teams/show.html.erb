@@ -28,7 +28,11 @@
             <tr class="data-row">
               <td><%= game.date.strftime("%m/%d/%y") %></td>
               <td><%= link_to game.opponent_name(@team), game.opponent(@team) %> </td>
-              <td><%= game.outcome(@team) %></td>
+              <td><%= game.outcome(@team) %>
+                <% if game.team_games.first %>
+                  <small><%= game.team_games.first.possessions.round %></small>
+                <% end %>
+              </td>
             </tr>
           <% end %>
         </tbody>
@@ -57,19 +61,19 @@
           </tr>
             <tr class="data_row">
               <th>PORtg</th>
-              <td><%= @p_rtg.p_ortg.round(1) %>
+              <td class="center" colspan="2"><%= @p_rtg.p_ortg.round(1) %>
                 <small><%= prophet_rank("p_ortg", @p_rtg.p_ortg)%></small>
               </td>
             </tr>
             <tr class="data_row">
               <th>PDRtg</th>
-              <td><%= @p_rtg.p_drtg.round(1) %>
+              <td class="center" colspan="2"><%= @p_rtg.p_drtg.round(1) %>
                 <small><%= prophet_inverse_rank("p_drtg", @p_rtg.p_drtg)%></small>
               </td>
             </tr>
             <tr class="data-row">
               <th>PTempo</th>
-              <td><%= @p_rtg.p_tempo.round(1) %>
+              <td class="center" colspan="2"><%= @p_rtg.p_tempo.round(1) %>
                 <small><%= prophet_rank("p_tempo", @p_rtg.p_tempo) %></small>
               </td>
             </tr>
