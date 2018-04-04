@@ -15,6 +15,7 @@ gem 'turbolinks',              '5.0.1'
 gem 'jbuilder',                '2.7.0'
 gem 'pg',                      '0.18.4'
 gem 'nokogiri',                '1.8.2'
+gem 'font-awesome-rails',      '4.7.0.3'
 
 group :development, :test do
   gem 'byebug',  '9.0.6', platform: :mri

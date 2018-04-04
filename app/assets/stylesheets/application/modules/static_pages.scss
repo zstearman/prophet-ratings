@@ -70,3 +70,18 @@
 
 #about-paragraph {
 }
+
+.social-logos{
+  padding-top: 10px;
+  @media(min-width: $screen-sm-min){
+    padding-top: 30px;
+  }
+  text-align: center;
+  a {
+    color: white;
+    text-decoration: none;
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
