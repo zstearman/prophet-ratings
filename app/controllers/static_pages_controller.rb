@@ -23,7 +23,7 @@ class StaticPagesController < ApplicationController
   def dashboard
     # Attepmt to order by a foreign table is not successful
     # @team_seasons = TeamSeason.includes(:team).order("team.ap_rank desc")
-    @team_seasons = TeamSeason.order(ap_rank: :asc)
+    @team_seasons = TeamSeason.where.not(p_rtg: nil).order(p_rtg: :desc).limit(25)
     @games = Game.where(date: '16/03/2018').limit(10)
   end
 end

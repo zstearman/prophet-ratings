@@ -16,20 +16,18 @@
       <tbody>
         <% x = 0 %>
         <% @team_seasons.each do |season| %>
-          <% if !season.team.ap_rank.nil? %>
-            <tr class="data-row">
-              <% x = x + 1 %>
-              <th><%= x %></th>
-              <td><%= season.ap_rank %></td>
-              <td><%= link_to(season.school, season.team) %></td>
-              <td><%= season.wins.to_s + "-" + season.losses.to_s %></td>
-              <% if season.team.conference %>
-                <td><%= link_to season.team.conference.key, season.team.conference %></td>
-              <% else %>
-                <td></td>
-              <% end %>
-            </tr>
-          <% end %>
+          <tr class="data-row">
+            <% x = x + 1 %>
+            <th><%= x %></th>
+            <td><%= season.ap_rank %></td>
+            <td><%= link_to(season.school, season.team) %></td>
+            <td><%= season.wins.to_s + "-" + season.losses.to_s %></td>
+            <% if season.team.conference %>
+              <td><%= link_to season.team.conference.key, season.team.conference %></td>
+            <% else %>
+              <td></td>
+            <% end %>
+          </tr>
         <% end %>
       </tbody>
     </table>
