@@ -24,6 +24,9 @@ one:
   total_rebounds_percentage: 10
   steals_percentage: 10
   blocks_percentage: 10
+  p_rtg: 1
+  p_ortg: 1
+  p_drtg: 1
   
   
 
@@ -51,3 +54,6 @@ two:
   total_rebounds_percentage: 10
   steals_percentage: 10
   blocks_percentage: 10
+  p_rtg: 1
+  p_ortg: 1
+  p_drtg: 1
