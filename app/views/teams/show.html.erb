@@ -6,7 +6,7 @@
   <% @record = @season.wins.to_s + "-" + @season.losses.to_s %>
   <% @conf_record = @season.conference_wins.to_s + "-" + @season.conference_losses.to_s %>
   <h5 class="center"><%= @record + " (" + @conf_record + ")" %>
-    <span> &#8226; </span><%=@team.conference.try(:name) %>
+    <span> &#8226; </span><%=@team.conference.try(:name) + " Conference" %>
   </h5>
   <% if current_user.admin? %>
     <%= link_to 'edit team', edit_team_path(@team), class: "edit-team-link" %>
@@ -61,21 +61,24 @@
           </tr>
             <tr class="data_row">
               <th>PORtg</th>
-              <td class="center" colspan="2"><%= @p_rtg.p_ortg.round(1) %>
+              <td class= colspan="2"><%= @p_rtg.p_ortg.round(1) %>
                 <small><%= prophet_rank("p_ortg", @p_rtg.p_ortg)%></small>
               </td>
+              <td>-</td>
             </tr>
             <tr class="data_row">
               <th>PDRtg</th>
-              <td class="center" colspan="2"><%= @p_rtg.p_drtg.round(1) %>
+              <td class= colspan="2"><%= @p_rtg.p_drtg.round(1) %>
                 <small><%= prophet_inverse_rank("p_drtg", @p_rtg.p_drtg)%></small>
               </td>
+              <td>-</td>
             </tr>
             <tr class="data-row">
               <th>PTempo</th>
-              <td class="center" colspan="2"><%= @p_rtg.p_tempo.round(1) %>
+              <td class= colspan="2"><%= @p_rtg.p_tempo.round(1) %>
                 <small><%= prophet_rank("p_tempo", @p_rtg.p_tempo) %></small>
               </td>
+              <td>-</td>
             </tr>
             
   <!--four factors section-->
