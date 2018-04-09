@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180409031634) do
+ActiveRecord::Schema.define(version: 20180409205524) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -116,8 +116,31 @@ ActiveRecord::Schema.define(version: 20180409031634) do
     t.integer "global_player_id"
     t.integer "global_player_game_id"
     t.string "name"
+    t.integer "stat_id"
+    t.bigint "team_id"
+    t.integer "season_type"
+    t.bigint "team_season_id"
+    t.string "position"
+    t.string "injury_status"
+    t.string "injury_body_part"
+    t.date "injury_start_date"
+    t.string "injury_notes"
+    t.integer "global_team_id"
+    t.integer "global_game_id"
+    t.integer "global_opponent_id"
+    t.bigint "game_id"
+    t.bigint "team_game_id"
+    t.integer "minutes"
+    t.integer "field_goals_made"
+    t.integer "field_goals_attempted"
+    t.bigint "player_id"
+    t.index ["game_id"], name: "index_player_games_on_game_id"
     t.index ["global_player_game_id"], name: "index_player_games_on_global_player_game_id"
     t.index ["global_player_id"], name: "index_player_games_on_global_player_id"
+    t.index ["player_id"], name: "index_player_games_on_player_id"
+    t.index ["team_game_id"], name: "index_player_games_on_team_game_id"
+    t.index ["team_id"], name: "index_player_games_on_team_id"
+    t.index ["team_season_id"], name: "index_player_games_on_team_season_id"
   end
 
   create_table "players", force: :cascade do |t|
@@ -316,6 +339,11 @@ ActiveRecord::Schema.define(version: 20180409031634) do
   add_foreign_key "games", "team_seasons", column: "home_team_season_id"
   add_foreign_key "games", "teams", column: "away_team_id"
   add_foreign_key "games", "teams", column: "home_team_id"
+  add_foreign_key "player_games", "games"
+  add_foreign_key "player_games", "players"
+  add_foreign_key "player_games", "team_games"
+  add_foreign_key "player_games", "team_seasons"
+  add_foreign_key "player_games", "teams"
   add_foreign_key "players", "teams"
   add_foreign_key "prophet_ratings", "team_seasons"
   add_foreign_key "team_games", "games"

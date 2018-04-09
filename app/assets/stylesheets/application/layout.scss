@@ -94,7 +94,9 @@ textarea {
   background-color: #0a0d5e;
   #logo-left {
     padding-left: 40px;
-    background-image: url('/HeaderLeft.jpg');
+    @media(min-width: $screen-sm-min){
+      background-image: url('/HeaderLeft.jpg');
+    }
     background-color: white;
     background-size: 100%;
   }
@@ -102,9 +104,10 @@ textarea {
     text-align: right;
     vertical-align: middle;
     padding-top: 20px;
-    padding-right: 60px;
+    padding-right: 40px;
     @media(min-width: $screen-sm-min){
       font-size: 1.6em;
+      padding-right: 60px;
       @media(min-width: $screen-md-min){
       font-size: 2em;
       }

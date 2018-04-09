@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   delete '/logout',    to: 'sessions#destroy'
   get    '/rankings',  to: 'team_seasons#index'
   get    '/stats',     to: 'team_seasons#stats'
+  resources :games,               only:[:show]
   resources :users
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]

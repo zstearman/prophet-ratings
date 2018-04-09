@@ -28,7 +28,7 @@
             <tr class="data-row">
               <td><%= game.date.strftime("%m/%d/%y") %></td>
               <td><%= link_to game.opponent_name(@team), game.opponent(@team) %> </td>
-              <td><%= game.outcome(@team) %>
+              <td><%= link_to game.outcome(@team), game %>
                 <% if game.team_games.first %>
                   <small><%= game.team_games.first.possessions.round %></small>
                 <% end %>
