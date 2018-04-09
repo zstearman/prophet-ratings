@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180404202128) do
+ActiveRecord::Schema.define(version: 20180409031634) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -106,6 +106,7 @@ ActiveRecord::Schema.define(version: 20180404202128) do
     t.string "location_type"
     t.string "location"
     t.index ["date"], name: "index_games_on_date"
+    t.index ["global_game_id"], name: "index_games_on_global_game_id"
     t.index ["season_id"], name: "index_games_on_season_id"
   end
 
@@ -158,6 +159,7 @@ ActiveRecord::Schema.define(version: 20180404202128) do
     t.boolean "current"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["end_year"], name: "index_seasons_on_end_year"
   end
 
   create_table "team_games", force: :cascade do |t|

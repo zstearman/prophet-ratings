@@ -6,7 +6,7 @@
   <% @record = @season.wins.to_s + "-" + @season.losses.to_s %>
   <% @conf_record = @season.conference_wins.to_s + "-" + @season.conference_losses.to_s %>
   <h5 class="center"><%= @record + " (" + @conf_record + ")" %>
-    <span> &#8226; </span><%=@team.conference.try(:name) + " Conference" %>
+    <span> &#8226; </span><%=@team.conference.try(:name).to_s + " Conference" %>
   </h5>
   <% if current_user.admin? %>
     <%= link_to 'edit team', edit_team_path(@team), class: "edit-team-link" %>
