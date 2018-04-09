@@ -21,10 +21,14 @@ namespace :player_games_tasks do
       @game = PlayerGame.find_or_initialize_by(stat_id: game["StatID"])
       @player = Player.find_by(global_player_id: game["PlayerID"])
       @totalgame = Game.find_by(global_game_id: game["GameID"])
+      @team = Team.find_by(key: game["Team"])
+      @teamgame = TeamGame.find_by(game: @totalgame, team: @team)
       @game.global_player_game_id = game["StatID"]
       @game.name = game["Name"]
       @game.game = @totalgame
       @game.player = @player
+      @game.team_game = @teamgame
+      @game.home_or_away = game["HomeOrAway"]
       @game.position = game["Position"]
       @game.injury_status = game["InjuryStatus"]
       @game.injury_body_part = game["InjuryBodyPart"]
@@ -33,6 +37,14 @@ namespace :player_games_tasks do
       @game.minutes = game["Minutes"]
       @game.field_goals_made = game["FieldGoalsMade"]
       @game.field_goals_attempted = game["FieldGoalsAttempted"]
+      @game.field_goals_percentage = game["FieldGoalsPercentage"]
+      @game.effective_field_goals_percentage = game["EffectiveFieldGoalsPercentage"]
+      @game.two_pointers_made = game["TwoPointersMade"]
+      @game.two_pointers_attempted = game["TwoPointersAttempted"]
+      @game.two_pointers_percentage = game["TwoPointersPercentage"]
+      @game.three_pointers_made = game["ThreePointersMade"]
+      @game.three_pointers_attempted = game["ThreePointersAttempted"]
+      @game.three_pointers_percentage = game["ThreePointersPercentage"]
       if @game.save
         x += 1
       end

@@ -1,3 +1,8 @@
-<% @game.player_games.each do |game| %>
-  <%= game.name %>
-<% end %>
+<table>
+  <% @home_team_game.player_games.each do |game| %>
+    <tr>
+      <td><%= game.name %></td>
+      <td><%= game.minutes %></td>
+    </tr>
+  <% end %>  
+</table>

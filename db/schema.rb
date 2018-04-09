@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180409205524) do
+ActiveRecord::Schema.define(version: 20180409212113) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -134,6 +134,15 @@ ActiveRecord::Schema.define(version: 20180409205524) do
     t.integer "field_goals_made"
     t.integer "field_goals_attempted"
     t.bigint "player_id"
+    t.string "home_or_away"
+    t.decimal "field_goals_percentage"
+    t.decimal "effective_field_goals_percentage"
+    t.integer "two_pointers_made"
+    t.integer "two_pointers_attempted"
+    t.decimal "two_pointers_percentage"
+    t.integer "three_pointers_made"
+    t.integer "three_pointers_attempted"
+    t.decimal "three_pointers_percentage"
     t.index ["game_id"], name: "index_player_games_on_game_id"
     t.index ["global_player_game_id"], name: "index_player_games_on_global_player_game_id"
     t.index ["global_player_id"], name: "index_player_games_on_global_player_id"
