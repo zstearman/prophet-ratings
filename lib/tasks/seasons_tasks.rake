@@ -14,7 +14,7 @@ namespace :seasons_tasks do
     request = Net::HTTP::Get.new(uri.request_uri)
     # Request headers
     # Currently using trial subscription key
-    request['Ocp-Apim-Subscription-Key'] = '8b5aef100e21492e869155a34e58e245'
+    request['Ocp-Apim-Subscription-Key'] = 'ce3dce505f5540688889d2f547550d28'
     # Request body
     request.body = ""
     

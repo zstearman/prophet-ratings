@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180410152306) do
+ActiveRecord::Schema.define(version: 20180410171911) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -194,6 +194,7 @@ ActiveRecord::Schema.define(version: 20180410152306) do
     t.datetime "updated_at", null: false
     t.integer "season"
     t.index ["end_year"], name: "index_seasons_on_end_year"
+    t.index ["season"], name: "index_seasons_on_season"
   end
 
   create_table "team_games", force: :cascade do |t|
