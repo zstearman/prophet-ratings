@@ -40,4 +40,18 @@ namespace :conferences_tasks do
     puts x.to_s + " teams sorted into " + y.to_s + " conferences."
   end
 
+  task print_conferences: :environment do
+    Conference.all.each do |conference|
+      puts conference.id.to_s + ", " + conference.name
+    end
+  end
+  
+  task get_conference_keys: :environment do
+    @conferences = JSON.parse File.read(Rails.root.join('app', 'assets', 'jsons', 'ConferenceKeys.json'))
+    @conferences.each do |conference|
+      @conference = Conference.find_by(name: conference["Name"])
+      @conference.key = conference["Key"]
+      @conference.save
+    end
+  end
 end

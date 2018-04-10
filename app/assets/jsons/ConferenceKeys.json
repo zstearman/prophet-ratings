@@ -1,0 +1,167 @@
+[
+  {
+    "ID": 20,
+    "Name": "Conference USA",
+    "Key": "CUSA"
+  },
+  {
+    "ID": 21,
+    "Name": "Horizon League",
+    "Key": "HOR"
+  },
+  {
+    "ID": 22,
+    "Name": "Independents",
+    "Key": "IND"
+  },
+  {
+    "ID": 23,
+    "Name": "Ivy League",
+    "Key": "IVY"
+  },
+  {
+    "ID": 30,
+    "Name": "Ohio Valley",
+    "Key": "OVC"
+  },
+  {
+    "ID": 32,
+    "Name": "Patriot League",
+    "Key": "PAT"
+  },
+  {
+    "ID": 34,
+    "Name": "Southern",
+    "Key": "SOCON"
+  },
+  {
+    "ID": 35,
+    "Name": "Southland",
+    "Key": "SLC"
+  },
+  {
+    "ID": 36,
+    "Name": "Southwestern Athletic",
+    "Key": "SWAC"
+  },
+  {
+    "ID": 37,
+    "Name": "Summit",
+    "Key": "SUML"
+  },
+  {
+    "ID": 38,
+    "Name": "Sun Belt",
+    "Key": "SUN"
+  },
+  {
+    "ID": 40,
+    "Name": "Western Athletic",
+    "Key": "WAC"
+  },
+  {
+    "ID": 8,
+    "Name": "American Athletic",
+    "Key": "AAC"
+  },
+  {
+    "ID": 9,
+    "Name": "America East",
+    "Key": "AEC"
+  },
+  {
+    "ID": 10,
+    "Name": "Atlantic Coast",
+    "Key": "ACC"
+  },
+  {
+    "ID": 11,
+    "Name": "Atlantic Sun",
+    "Key": "ASUN"
+  },
+  {
+    "ID": 12,
+    "Name": "Atlantic 10",
+    "Key": "A10"
+  },
+  {
+    "ID": 13,
+    "Name": "Big East",
+    "Key": "BE"
+  },
+  {
+    "ID": 14,
+    "Name": "Big Sky",
+    "Key": "BSKY"
+  },
+  {
+    "ID": 15,
+    "Name": "Big South",
+    "Key": "BSOU"
+  },
+  {
+    "ID": 16,
+    "Name": "Big Ten",
+    "Key": "B10"
+  },
+  {
+    "ID": 17,
+    "Name": "Big 12",
+    "Key": "B12"
+  },
+  {
+    "ID": 18,
+    "Name": "Big West",
+    "Key": "BW"
+  },
+  {
+    "ID": 19,
+    "Name": "Colonial Athletic",
+    "Key": "CAA"
+  },
+  {
+    "ID": 26,
+    "Name": "Mid-Eastern",
+    "Key": "MEAC"
+  },
+  {
+    "ID": 27,
+    "Name": "Missouri Valley",
+    "Key": "MVC"
+  },
+  {
+    "ID": 24,
+    "Name": "Metro Atlantic Athletic",
+    "Key": "MAAC"
+  },
+  {
+    "ID": 25,
+    "Name": "Mid-American",
+    "Key": "MAC"
+  },
+  {
+    "ID": 39,
+    "Name": "West Coast",
+    "Key": "WCC"
+  },
+  {
+    "ID": 33,
+    "Name": "Southeastern",
+    "Key": "SEC"
+  },
+  {
+    "ID": 29,
+    "Name": "Northeast",
+    "Key": "NEC"
+  },
+  {
+    "ID": 28,
+    "Name": "Mountain West",
+    "Key": "MW"
+  },
+  {
+    "ID": 31,
+    "Name": "Pac-12",
+    "Key": "P12"
+  }
+]
