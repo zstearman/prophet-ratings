@@ -23,4 +23,12 @@ module ApplicationHelper
     icon = column == sort_column ? icon : ""
     link_to "#{title} <span class='#{icon}'></span>".html_safe, {column: column, direction: direction}
   end
+  
+  def convert_date(old_date)
+    if old_date
+      return Date.strptime(old_date, '%m/%d/%Y')
+    else
+      return Date.strptime('01/01/2099', '%m/%d/%Y')
+    end
+  end
 end

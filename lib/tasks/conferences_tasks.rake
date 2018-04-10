@@ -26,6 +26,7 @@ namespace :conferences_tasks do
         @team = Team.find_by(key: team["Key"])
         if @team
           @team.conference = @conference
+          @team.active = true
           if @team.save
             x += 1
           end
