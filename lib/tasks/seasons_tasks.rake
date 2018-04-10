@@ -5,6 +5,10 @@ namespace :seasons_tasks do
   
   desc "Get Season Info From Fantasy Data"
   task get_seasons: :environment do
+    Season.all.each do |season|
+      season.current = false
+      season.save
+    end
     uri = URI('https://api.fantasydata.net/v3/cbb/stats/JSON/CurrentSeason')
     
     request = Net::HTTP::Get.new(uri.request_uri)
@@ -24,6 +28,7 @@ namespace :seasons_tasks do
     @season.description = @current_season["Description"]
     @season.regular_season_start_date = ApplicationHelper.convert_date(@current_season["RegularSeasonStartDate"])
     @season.post_season_start_date = ApplicationHelper.convert_date(@current_season["PostSeasonStartDate"])
+    @season.current = true
     if @season.save
       puts "Season successfully saved."
     end
