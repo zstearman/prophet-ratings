@@ -181,32 +181,28 @@ namespace :team_seasons_tasks do
       allowed_season.school = team_season.team.school
       games = team_season.team_game.count
       team_season.team_game.each do |team_game|
-        opponent_game = TeamGame.find_by(id: team_game.opponent_game_id)
-        if opponent_game
-          field_goals_made += opponent_game.field_goals_made
-          field_goals_attempted += opponent_game.field_goals_attempted
-          two_pointers_made += opponent_game.two_pointers_made
-          two_pointers_attempted += opponent_game.two_pointers_attempted
-          three_pointers_made += opponent_game.three_pointers_made
-          three_pointers_attempted += opponent_game.three_pointers_attempted
-          free_throws_made += opponent_game.free_throws_made
-          free_throws_attempted += opponent_game.free_throws_attempted
-          free_throws_percentage += opponent_game.free_throws_percentage
-          assists += opponent_game.assists
-          offensive_rebounds = opponent_game.offensive_rebounds
-          defensive_rebounds = opponent_game.defensive_rebounds
-          total_rebounds = opponent_game.rebounds
-          offensive_rebounds_allowed = team_game.offensive_rebounds
-          defensive_rebounds_allowed = team_game.defensive_rebounds
-          total_rebounds_allowed = team_game.rebounds
-          if opponent_game.possessions
-            possessions += opponent_game.possessions
-            turnovers += opponent_game.turnovers
-            blocks += opponent_game.blocked_shots
-            steals += opponent_game.steals
-            team_possessions += team_game.possessions
-          end
-        end
+        opponent_game = TeamGame.find(team_game.opponent_game_id)
+        field_goals_made += opponent_game.field_goals_made
+        field_goals_attempted += opponent_game.field_goals_attempted
+        two_pointers_made += opponent_game.two_pointers_made
+        two_pointers_attempted += opponent_game.two_pointers_attempted
+        three_pointers_made += opponent_game.three_pointers_made
+        three_pointers_attempted += opponent_game.three_pointers_attempted
+        free_throws_made += opponent_game.free_throws_made
+        free_throws_attempted += opponent_game.free_throws_attempted
+        free_throws_percentage += opponent_game.free_throws_percentage
+        assists += opponent_game.assists
+        offensive_rebounds = opponent_game.offensive_rebounds
+        defensive_rebounds = opponent_game.defensive_rebounds
+        total_rebounds = opponent_game.rebounds
+        offensive_rebounds_allowed = team_game.offensive_rebounds
+        defensive_rebounds_allowed = team_game.defensive_rebounds
+        total_rebounds_allowed = team_game.rebounds
+        possessions += opponent_game.possessions
+        turnovers += opponent_game.turnovers
+        blocks += opponent_game.blocked_shots
+        steals += opponent_game.steals
+        team_possessions += team_game.possessions
       end
       allowed_season.field_goals_made = field_goals_made
       allowed_season.field_goals_attempted = field_goals_attempted
@@ -233,7 +229,9 @@ namespace :team_seasons_tasks do
       if allowed_season.save
         x += 1
       else
-        puts "Allowed Season for " + allowed_season.school + " cannot be saved."
+        allowed_season.errors.full_messages.each do |msg|
+          puts msg
+        end
       end
     end
     puts x.to_s + " allowed seasons added or updated."
@@ -241,8 +239,6 @@ namespace :team_seasons_tasks do
 
   task team_seasons_calculations: :environment do
     x = 0
-    y = 0 
-    z = 0
     @team_seasons = TeamSeason.all.each do |team_season|
       offensive_rebounds = 0
       defensive_rebounds = 0
@@ -254,19 +250,13 @@ namespace :team_seasons_tasks do
       team_games = team_season.team_game.all
       team_games.each do |game|
         opponent_game = TeamGame.find_by(id: game.opponent_game_id)
-        if opponent_game
-          y += 1
-          offensive_rebounds += game.offensive_rebounds
-          defensive_rebounds += game.defensive_rebounds
-          offensive_rebounds_allowed += opponent_game.offensive_rebounds
-          defensive_rebounds_allowed += opponent_game.defensive_rebounds
-          if opponent_game.possessions
-            opponent_possessions += opponent_game.possessions
-            blocks += game.blocked_shots
-            steals += game.steals
-            z += 1
-          end
-        end
+        offensive_rebounds += game.offensive_rebounds
+        defensive_rebounds += game.defensive_rebounds
+        offensive_rebounds_allowed += opponent_game.offensive_rebounds
+        defensive_rebounds_allowed += opponent_game.defensive_rebounds
+        opponent_possessions += opponent_game.possessions
+        blocks += game.blocked_shots
+        steals += game.steals
       end
       team_season.offensive_rebounds_percentage = (offensive_rebounds.to_f / (offensive_rebounds + defensive_rebounds_allowed))
       team_season.defensive_rebounds_percentage = (defensive_rebounds.to_f / (defensive_rebounds + offensive_rebounds_allowed))
@@ -275,13 +265,10 @@ namespace :team_seasons_tasks do
       team_season.three_pointers_per_field_goal_attempted = team_season.three_pointers_attempted.to_f / team_season.field_goals_attempted
       team_season.blocks_percentage = blocks.to_f / opponent_possessions
       team_season.steals_percentage = steals.to_f / opponent_possessions
-      if team_season.team.active?
-        team_season.save
-      else
-        # team_season.delete
+      if team_season.save
+        x += 1
       end
-      x += 1
     end
-    puts x.to_s + " seasons calculations performed. " + (z.to_f/y).to_s + " percent of games had possessions."
+    puts x.to_s + " seasons calculations performed. " 
   end
 end

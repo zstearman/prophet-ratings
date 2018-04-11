@@ -63,8 +63,8 @@ namespace :games_tasks do
           if currentgame.save
              x = x + 1
           else
+            puts game["DateTime"].to_s + " " + game["AwayTeam"] + "@" + game["HomeTeam"]
             currentgame.errors.full_messages.each do |msg|
-              puts currentgame
               puts msg
             end
           end

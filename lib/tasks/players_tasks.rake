@@ -5,6 +5,9 @@ namespace :players_tasks do
     x = 0
     y = 0
     Team.all.each do |team|
+      if team.key == "UMKC"
+        team.key = "MKC"
+      end
       uri = URI('https://api.fantasydata.net/v3/cbb/stats/JSON/Players/' + team.key)
       request = Net::HTTP::Get.new(uri.request_uri)
       # Request headers

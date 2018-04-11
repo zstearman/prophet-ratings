@@ -6,7 +6,10 @@ class Game < ApplicationRecord
   belongs_to :away_team, :class_name => 'Team', :foreign_key => 'away_team_id'
   has_many :team_games
   has_many :player_games
-  
+  validates :home_team, :presence => true
+  validates :away_team, :presence => true
+  validates :home_team_season, :presence => true
+  validates :away_team_season, :presence => true
   def away_margin_of_victory
     @away_margin_of_victory = self.away_score - self.home_score
   end

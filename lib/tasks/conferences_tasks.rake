@@ -22,6 +22,10 @@ namespace :conferences_tasks do
     @hierarchy =  JSON.parse response.body
     @hierarchy.each do |conference|
       @conference = Conference.find_or_initialize_by(global_conference_id: conference["ConferenceID"])
+       @conference.name = conference["Name"]
+      if @conference.save
+        y += 1
+      end
       conference["Teams"].each do |team|
         if team["Key"] == "MKC"
           @team = Team.find_by(key: "UMKC") 
@@ -36,10 +40,7 @@ namespace :conferences_tasks do
           end
         end
       end
-      @conference.name = conference["Name"]
-      if @conference.save
-        y += 1
-      end
+
     end
     puts x.to_s + " teams sorted into " + y.to_s + " conferences."
   end

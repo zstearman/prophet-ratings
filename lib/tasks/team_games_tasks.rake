@@ -32,17 +32,14 @@ namespace :team_games_tasks do
         @opponent = Team.find_by(global_team_id: team_game["GlobalOpponentID"])
         @teamseason = TeamSeason.find_by(team: @team, season: @season)
         @game = Game.find_by(global_game_id: team_game["GlobalGameID"])
-        currentgame = TeamGame.find_or_initialize_by(global_game_id: team_game["StatID"])
-        if currentgame && @teamseason
+        if @game
+          currentgame = TeamGame.find_or_initialize_by(global_game_id: team_game["StatID"])
           currentgame.team = @team
-          if @opponent
-            currentgame.opponent_id = @opponent.id
-          end
+          currentgame.opponent_id = @opponent.id
           currentgame.team_season = @teamseason
-          if @game
-            currentgame.game = @game
-          end
-          # currentgame.status = game["Status"]
+          currentgame.game = @game
+          currentgame.team_key = @team.key
+          currentgame.is_game_over = team_game["IsGameOver"]
           currentgame.wins = team_game["Wins"]
           currentgame.losses = team_game["Losses"]
           currentgame.conference_wins = team_game["ConferenceWins"]
@@ -98,22 +95,21 @@ namespace :team_games_tasks do
         puts x.to_s + " team games added over " + y.to_s + " days so far."
       end
     end
+    y = 0
     z = 0
     TeamGame.all.each do |team_game|
-      if team_game.game && team_game.team && team_game.opponent_id
-        @game = team_game.game
-        @opponent_game = @game.team_games.find_by(opponent_key: team_game.team_key)
-        if @opponent_game
-          team_game.opponent_game_id = @opponent_game.id
-        else
-          puts team_game
-          z += 1
-        end
-        team_game.save
+      @game = team_game.game
+      @opponent_game = @game.team_games.find_by(opponent_key: team_game.team_key)
+      team_game.opponent_game_id = @opponent_game.id
+      if team_game.save
+        y += 1 
+      else
+        z += 1
       end
     end
+    puts y.to_s + " opponent games added successfully."
     puts z.to_s + " opponent games with errors."
-    puts x.to_s + " games added or updated."
+    puts x.to_s + " team games added or updated."
   end
   
   desc "TODO"
@@ -203,20 +199,19 @@ namespace :team_games_tasks do
   end
 
   task quick_task: :environment do
+    y = 0
     z = 0
-      TeamGame.all.each do |team_game|
-      if team_game.game && team_game.team && team_game.opponent_id
-        @game = team_game.game
-        @opponent_game = @game.team_games.find_by(opponent_key: team_game.team_key)
-        if @opponent_game
-          team_game.opponent_game_id = @opponent_game.id
-        else
-          z += 1
-        end
-        team_game.save
+    TeamGame.all.each do |team_game|
+      @game = team_game.game
+      @opponent_game = @game.team_games.find_by(opponent_key: team_game.team_key)
+      team_game.opponent_game_id = @opponent_game.id
+      if team_game.save
+        y += 1 
+      else
+        z += 1
       end
     end
+    puts y.to_s + " opponent games added successfully."
     puts z.to_s + " opponent games with errors."
-    puts x.to_s + " games added or updated."
   end
 end
