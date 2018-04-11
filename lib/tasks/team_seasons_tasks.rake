@@ -181,29 +181,31 @@ namespace :team_seasons_tasks do
       allowed_season.school = team_season.team.school
       games = team_season.team_game.count
       team_season.team_game.each do |team_game|
-        opponent_game = TeamGame.find(team_game.opponent_game_id)
-        field_goals_made += opponent_game.field_goals_made
-        field_goals_attempted += opponent_game.field_goals_attempted
-        two_pointers_made += opponent_game.two_pointers_made
-        two_pointers_attempted += opponent_game.two_pointers_attempted
-        three_pointers_made += opponent_game.three_pointers_made
-        three_pointers_attempted += opponent_game.three_pointers_attempted
-        free_throws_made += opponent_game.free_throws_made
-        free_throws_attempted += opponent_game.free_throws_attempted
-        free_throws_percentage += opponent_game.free_throws_percentage
-        assists += opponent_game.assists
-        offensive_rebounds = opponent_game.offensive_rebounds
-        defensive_rebounds = opponent_game.defensive_rebounds
-        total_rebounds = opponent_game.rebounds
-        offensive_rebounds_allowed = team_game.offensive_rebounds
-        defensive_rebounds_allowed = team_game.defensive_rebounds
-        total_rebounds_allowed = team_game.rebounds
-        if opponent_game.possessions
-          possessions += opponent_game.possessions
-          turnovers += opponent_game.turnovers
-          blocks += opponent_game.blocked_shots
-          steals += opponent_game.steals
-          team_possessions += team_game.possessions
+        opponent_game = TeamGame.find_by(id: team_game.opponent_game_id)
+        if opponent_game
+          field_goals_made += opponent_game.field_goals_made
+          field_goals_attempted += opponent_game.field_goals_attempted
+          two_pointers_made += opponent_game.two_pointers_made
+          two_pointers_attempted += opponent_game.two_pointers_attempted
+          three_pointers_made += opponent_game.three_pointers_made
+          three_pointers_attempted += opponent_game.three_pointers_attempted
+          free_throws_made += opponent_game.free_throws_made
+          free_throws_attempted += opponent_game.free_throws_attempted
+          free_throws_percentage += opponent_game.free_throws_percentage
+          assists += opponent_game.assists
+          offensive_rebounds = opponent_game.offensive_rebounds
+          defensive_rebounds = opponent_game.defensive_rebounds
+          total_rebounds = opponent_game.rebounds
+          offensive_rebounds_allowed = team_game.offensive_rebounds
+          defensive_rebounds_allowed = team_game.defensive_rebounds
+          total_rebounds_allowed = team_game.rebounds
+          if opponent_game.possessions
+            possessions += opponent_game.possessions
+            turnovers += opponent_game.turnovers
+            blocks += opponent_game.blocked_shots
+            steals += opponent_game.steals
+            team_possessions += team_game.possessions
+          end
         end
       end
       allowed_season.field_goals_made = field_goals_made
@@ -224,7 +226,7 @@ namespace :team_seasons_tasks do
       allowed_season.turnovers_percentage = (turnovers.to_f / possessions)
       allowed_season.effective_field_goal_percentage = ((field_goals_made.to_f + (0.5 * three_pointers_made))/ field_goals_attempted) * 100
       allowed_season.steals_percentage = (steals.to_f / team_possessions)
-      allowed_season.blocks_percentage = blocks.to_f / team_possessions
+      allowed_season.blocks_percentage = blocks.to_f / field_goals_attempted
       allowed_season.offensive_rebounds_percentage = (offensive_rebounds.to_f / (offensive_rebounds + defensive_rebounds_allowed))
       allowed_season.defensive_rebounds_percentage = (defensive_rebounds.to_f / (defensive_rebounds + offensive_rebounds_allowed))
       allowed_season.total_rebounds_percentage = (total_rebounds.to_f / (total_rebounds + total_rebounds_allowed))
@@ -251,17 +253,19 @@ namespace :team_seasons_tasks do
       steals = 0
       team_games = team_season.team_game.all
       team_games.each do |game|
-        y += 1
-        opponent_game = TeamGame.find(game.opponent_game_id)
-        offensive_rebounds += game.offensive_rebounds
-        defensive_rebounds += game.defensive_rebounds
-        offensive_rebounds_allowed += opponent_game.offensive_rebounds
-        defensive_rebounds_allowed += opponent_game.defensive_rebounds
-        if opponent_game.possessions
-          opponent_possessions += opponent_game.possessions
-          blocks += game.blocked_shots
-          steals += game.steals
-          z += 1
+        opponent_game = TeamGame.find_by(id: game.opponent_game_id)
+        if opponent_game
+          y += 1
+          offensive_rebounds += game.offensive_rebounds
+          defensive_rebounds += game.defensive_rebounds
+          offensive_rebounds_allowed += opponent_game.offensive_rebounds
+          defensive_rebounds_allowed += opponent_game.defensive_rebounds
+          if opponent_game.possessions
+            opponent_possessions += opponent_game.possessions
+            blocks += game.blocked_shots
+            steals += game.steals
+            z += 1
+          end
         end
       end
       team_season.offensive_rebounds_percentage = (offensive_rebounds.to_f / (offensive_rebounds + defensive_rebounds_allowed))

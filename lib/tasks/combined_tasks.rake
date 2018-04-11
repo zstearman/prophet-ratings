@@ -10,6 +10,7 @@ namespace :combined_tasks do
     Rake::Task["conferences_tasks:get_conference_keys"].invoke
     Rake::Task["players_tasks:get_players"].invoke
     Rake::Task["team_seasons_tasks:get_team_seasons"].invoke
+    Rake::Task["games_tasks:get_games"].invoke
   end
 
 end

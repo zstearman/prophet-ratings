@@ -26,44 +26,45 @@ namespace :prophet_ratings do
           team_tempo = []
           team_season.team_game.all.each do |team_game|
             game = team_game.game
-            if team_game.opponent_key == game.home_team_key
-              if game.home_team_season.team.active? && game.status == "Final"
-                opponent_prtg = game.home_team_season.prophet_rating
-                expected_tempo = avg_tempo + ((team_prtg.p_tempo - avg_tempo) + (opponent_prtg.p_tempo - avg_tempo))
-                actual_tempo = team_game.possessions
-                expected_ortg = avg_ort + ((team_prtg.p_ortg - avg_ort) + (opponent_prtg.p_drtg - avg_drt))
-                actual_ortg = (100 * game.away_score) / actual_tempo
-                team_ortg.push(actual_ortg)
-                expected_drtg = avg_drt + ((team_prtg.p_drtg - avg_drt) + (opponent_prtg.p_ortg - avg_ort))
-                actual_drtg = (100 * game.home_score) / actual_tempo
-                adj_ortg = team_prtg.p_ortg + actual_ortg - expected_ortg
-                adj_drtg = team_prtg.p_drtg + actual_drtg - expected_drtg
-                adj_tempo = team_prtg.p_tempo + actual_tempo - expected_tempo
-                team_ortg.push(adj_ortg)
-                team_drtg.push(adj_drtg)
-                team_tempo.push(adj_tempo)
+            if game.team_games.count == 2 && game.home_team_season && game.away_team_season
+              if team_game.opponent_key == game.home_team_key
+                if game.home_team_season.team.active? && game.status == "Final"
+                  opponent_prtg = game.home_team_season.prophet_rating
+                  expected_tempo = avg_tempo + ((team_prtg.p_tempo - avg_tempo) + (opponent_prtg.p_tempo - avg_tempo))
+                  actual_tempo = team_game.possessions
+                  expected_ortg = avg_ort + ((team_prtg.p_ortg - avg_ort) + (opponent_prtg.p_drtg - avg_drt))
+                  actual_ortg = (100 * game.away_score) / actual_tempo
+                  team_ortg.push(actual_ortg)
+                  expected_drtg = avg_drt + ((team_prtg.p_drtg - avg_drt) + (opponent_prtg.p_ortg - avg_ort))
+                  actual_drtg = (100 * game.home_score) / actual_tempo
+                  adj_ortg = team_prtg.p_ortg + actual_ortg - expected_ortg
+                  adj_drtg = team_prtg.p_drtg + actual_drtg - expected_drtg
+                  adj_tempo = team_prtg.p_tempo + actual_tempo - expected_tempo
+                  team_ortg.push(adj_ortg)
+                  team_drtg.push(adj_drtg)
+                  team_tempo.push(adj_tempo)
+                end
+              elsif team_game.opponent_key == game.away_team_key
+                if game.away_team_season.team.active? && game.status == "Final"
+                  opponent_prtg = game.away_team_season.prophet_rating
+                  expected_tempo = avg_tempo + ((team_prtg.p_tempo - avg_tempo) + (opponent_prtg.p_tempo - avg_tempo))
+                  actual_tempo = team_game.possessions
+                  expected_ortg = avg_ort + ((team_prtg.p_ortg - avg_ort) + (opponent_prtg.p_drtg - avg_drt))
+                  actual_ortg = (100 * game.home_score) / actual_tempo
+                  team_ortg.push(actual_ortg)
+                  expected_drtg = avg_drt + ((team_prtg.p_drtg - avg_drt) + (opponent_prtg.p_ortg - avg_ort))
+                  actual_drtg = (100 * game.away_score) / actual_tempo
+                  adj_ortg = team_prtg.p_ortg + actual_ortg - expected_ortg
+                  adj_drtg = team_prtg.p_drtg + actual_drtg - expected_drtg
+                  adj_tempo = team_prtg.p_tempo + actual_tempo - expected_tempo
+                  team_ortg.push(adj_ortg)
+                  team_drtg.push(adj_drtg)
+                  team_tempo.push(adj_tempo)
+                end
+              else
+                # handle errors
               end
-            elsif team_game.opponent_key == game.away_team_key
-              if game.away_team_season.team.active? && game.status == "Final"
-                opponent_prtg = game.away_team_season.prophet_rating
-                expected_tempo = avg_tempo + ((team_prtg.p_tempo - avg_tempo) + (opponent_prtg.p_tempo - avg_tempo))
-                actual_tempo = team_game.possessions
-                expected_ortg = avg_ort + ((team_prtg.p_ortg - avg_ort) + (opponent_prtg.p_drtg - avg_drt))
-                actual_ortg = (100 * game.home_score) / actual_tempo
-                team_ortg.push(actual_ortg)
-                expected_drtg = avg_drt + ((team_prtg.p_drtg - avg_drt) + (opponent_prtg.p_ortg - avg_ort))
-                actual_drtg = (100 * game.away_score) / actual_tempo
-                adj_ortg = team_prtg.p_ortg + actual_ortg - expected_ortg
-                adj_drtg = team_prtg.p_drtg + actual_drtg - expected_drtg
-                adj_tempo = team_prtg.p_tempo + actual_tempo - expected_tempo
-                team_ortg.push(adj_ortg)
-                team_drtg.push(adj_drtg)
-                team_tempo.push(adj_tempo)
-              end
-            else
-              # handle errors
             end
-            
           end
           if team_ortg.size > 0 && team_drtg.size > 0
           old_ortg = team_prtg.p_ortg

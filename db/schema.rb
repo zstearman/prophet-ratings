@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180410171911) do
+ActiveRecord::Schema.define(version: 20180411145445) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -210,7 +210,7 @@ ActiveRecord::Schema.define(version: 20180410171911) do
     t.decimal "possessions"
     t.integer "opponent_id"
     t.string "opponent_key"
-    t.date "day"
+    t.date "date"
     t.datetime "date_time"
     t.boolean "home"
     t.datetime "updated"
@@ -242,7 +242,10 @@ ActiveRecord::Schema.define(version: 20180410171911) do
     t.integer "season"
     t.integer "global_game_id"
     t.integer "opponent_game_id"
+    t.string "team_key"
+    t.boolean "is_game_over"
     t.index ["game_id"], name: "index_team_games_on_game_id"
+    t.index ["opponent_key"], name: "index_team_games_on_opponent_key"
     t.index ["team_id"], name: "index_team_games_on_team_id"
     t.index ["team_season_id"], name: "index_team_games_on_team_season_id"
   end
