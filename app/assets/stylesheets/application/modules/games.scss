@@ -87,6 +87,21 @@
     @media(min-width: $screen-md-min){
       margin-top: 50px;
     }
+    .box-score-container{
+      padding: 0;
+      .away-box-score{
+        padding: 0 5px;
+          @media(min-width: $screen-md-min){
+            padding: 0 10px 0 5px;
+          }
+      }
+      .home-box-score{
+        padding: 0 5px;
+          @media(min-width: $screen-md-min){
+            padding: 0 5px 0 10px;
+          }
+      }
+    }
     .box-score-table{
       font-size: 0.75em;
       @media(min-width: $screen-md-min){
