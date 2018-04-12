@@ -20,6 +20,13 @@
   }
   .banner-score-box{
     padding: 0;
+    .home-score{
+      padding: 0 0 0 5px;
+      text-align: right;
+    }
+    .away-score{
+      padding: 0 5px 0 0;
+    }
     h1 {
       font-size: 3em;
     }
