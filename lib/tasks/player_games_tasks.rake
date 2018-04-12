@@ -79,7 +79,8 @@ namespace :player_games_tasks do
       y += 1
       current_date += 1.day
       if y % 10 == 0
-        puts x.to_s + " player games added over " + y.to_s + " days so far."
+        puts x.to_s + " player games added over " + y.to_s + " days
+        so far."
       end
     end
     puts x.to_s + " player games added or updated."

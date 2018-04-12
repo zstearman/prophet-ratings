@@ -1,3 +1,36 @@
+<div class="box-score">
+  <div class="score-banner row">
+    <div class="away-team-banner col-md-3 col-md-offset-2 col-xs-5">
+      <div class="team-info col-xs-10">
+        <h1 class="box-score-team-title"><%= @away_team.school %></h1>
+        <p><%= @away_team_season.wins.to_s + "-" + @away_team_season.losses.to_s %></p>
+      </div>
+      <div class="team-logo col-xs-2">
+        <%= image_tag(@away_team.team_logo_url, width: '80%', :class => 'box-score-team-logo') %>
+      </div>
+    </div>
+    <div class="banner-score-box col-xs-2">
+      <div class="away-score col-xs-2">
+        <h1><%= @game.away_score %></h1>
+      </div>
+      <div class="col-xs-8">
+        
+      </div>
+      <div class="home-score col-xs-2">
+        <h1><%= @game.home_score %></h1>
+      </div>
+    </div>
+    <div class="home-team-banner col-md-3 col-xs-5">
+      <div class="team-logo col-xs-2">
+        <%= image_tag(@home_team.team_logo_url, width: '80%', :class => 'box-score-team-logo') %>
+      </div>
+      <div class="team-info col-xs-10">
+        <h1 class="box-score-team-title"><%= @home_team.school %></h1>
+        <p><%= @home_team_season.wins.to_s + "-" + @home_team_season.losses.to_s %></p>
+      </div>
+    </div>
+  </div>
+</div>
 <table>
   <% @home_team_game.player_games.each do |game| %>
     <tr>
