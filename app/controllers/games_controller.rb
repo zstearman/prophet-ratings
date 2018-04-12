@@ -8,5 +8,7 @@ class GamesController < ApplicationController
     @away_team_game = TeamGame.find_by(game: @game, home: false)
     @away_team_season = @away_team_game.team_season
     @home_team_season = @home_team_game.team_season
+    @away_player_games = @away_team_game.player_games.order("minutes desc")
+    @home_player_games = @home_team_game.player_games.order("minutes desc")
   end
 end

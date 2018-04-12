@@ -2,7 +2,7 @@
   <div class="score-banner row">
     <div class="away-team-banner col-md-4 col-md-offset-1 col-xs-4">
       <div class="team-info col-xs-8 col-sm-10">
-        <h1 class="box-score-team-title hidden-xs"><%= @away_team.school %></h1>
+        <h1 class="box-score-team-title hidden-xs"><%= link_to @away_team.school, @away_team %></h1>
         <h1 class="box-score-team-title hidden visible-xs"><%= @away_team.key %></h1>
         <p><%= @away_team_season.wins.to_s + "-" + @away_team_season.losses.to_s %></p>
       </div>
@@ -15,7 +15,7 @@
         <h1><%= @game.away_score %></h1>
       </div>
       <div class="col-md-6 hidden-xs hidden-sm">
-        
+        <h2 class="center"><%= @game.status %></h2>
       </div>
       <div class="home-score col-md-3 col-xs-6">
         <h1><%= @game.home_score %></h1>
@@ -26,18 +26,102 @@
         <%= image_tag(@home_team.team_logo_url, width: '80%', :class => 'box-score-team-logo') %>
       </div>
       <div class="team-info col-xs-8 col-sm-10">
-        <h1 class="box-score-team-title hidden-xs"><%= @home_team.school %></h1>
+        <h1 class="box-score-team-title hidden-xs"><%= link_to @home_team.school, @home_team %></h1>
         <h1 class="box-score-team-title hidden visible-xs"><%= @home_team.key %></h1>
         <p><%= @home_team_season.wins.to_s + "-" + @home_team_season.losses.to_s %></p>
       </div>
     </div>
   </div>
+  <div class="row box-score-row">
+    <div class="box-score col-md-10 col-md-offset-1">
+      <div class="away-box-score col-md-6">
+        <table class="box-score-table table table-striped">
+          <thead>
+            <tr class="data-row">
+              <th>#</th>
+              <th>Player</th>
+              <th class="text-right">MIN</th>
+              <th class="text-right">FG</th>
+              <th class="text-right">3PT</th>
+              <th class="text-right hidden-xs">FT</th>
+              <th class="text-right hidden-xs">OREB</th>
+              <th class="text-right hidden-xs">DREB</th>
+              <th class="text-right">REB</th>
+              <th class="text-right">AST</th>
+              <th class="text-right hidden-xs">STL</th>
+              <th class="text-right hidden-xs">BLK</th>
+              <th class="text-right hidden-xs">TO</th>
+              <th class="text-right">PF</th>
+              <th class="text-right">PTS</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @away_player_games.each do |game| %>
+              <tr class="data-row">
+                <td><%= game.player.jersey %></td>
+                <td><%= game.name %><small> <%= game.player.position %></small></td>
+                <td class="text-right"><%= game.minutes %></td>
+                <td class="text-right"><%= game.field_goals_made.to_s + "-" + game.field_goals_attempted.to_s %></td>
+                <td class="text-right"><%= game.three_pointers_made.to_s + "-" + game.three_pointers_attempted.to_s %></td>
+                <td class="text-right hidden-xs"><%= game.free_throws_made.to_s + "-" + game.free_throws_attempted.to_s %></td>
+                <td class="text-right hidden-xs"><%= game.offensive_rebounds %></td>
+                <td class="text-right hidden-xs"><%= game.defensive_rebounds %></td>
+                <td class="text-right"><%= game.rebounds %></td>
+                <td class="text-right"><%= game.assists %></td>
+                <td class="text-right hidden-xs"><%= game.steals %></td>
+                <td class="text-right hidden-xs"><%= game.blocked_shots %></td>
+                <td class="text-right hidden-xs"><%= game.turnovers %></td>
+                <td class="text-right"><%= game.personal_fouls %></td>
+                <td class="text-right"><%= game.points %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+      <div class="home-box-score col-md-6">
+        <table class="box-score-table table table-striped">
+          <thead>
+            <tr class="data-row">
+              <th>#</th>
+              <th>Player</th>
+              <th class="text-right">MIN</th>
+              <th class="text-right">FG</th>
+              <th class="text-right">3PT</th>
+              <th class="text-right hidden-xs">FT</th>
+              <th class="text-right hidden-xs">OREB</th>
+              <th class="text-right hidden-xs">DREB</th>
+              <th class="text-right">REB</th>
+              <th class="text-right">AST</th>
+              <th class="text-right hidden-xs">STL</th>
+              <th class="text-right hidden-xs">BLK</th>
+              <th class="text-right hidden-xs">TO</th>
+              <th class="text-right">PF</th>
+              <th class="text-right">PTS</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @home_player_games.each do |game| %>
+              <tr class="data-row">
+                <td><%= game.player.jersey %></td>
+                <td><%= game.name %><small> <%= game.player.position %></small></td>
+                <td class="text-right"><%= game.minutes %></td>
+                <td class="text-right"><%= game.field_goals_made.to_s + "-" + game.field_goals_attempted.to_s %></td>
+                <td class="text-right"><%= game.three_pointers_made.to_s + "-" + game.three_pointers_attempted.to_s %></td>
+                <td class="text-right hidden-xs"><%= game.free_throws_made.to_s + "-" + game.free_throws_attempted.to_s %></td>
+                <td class="text-right hidden-xs"><%= game.offensive_rebounds %></td>
+                <td class="text-right hidden-xs"><%= game.defensive_rebounds %></td>
+                <td class="text-right"><%= game.rebounds %></td>
+                <td class="text-right"><%= game.assists %></td>
+                <td class="text-right hidden-xs"><%= game.steals %></td>
+                <td class="text-right hidden-xs"><%= game.blocked_shots %></td>
+                <td class="text-right hidden-xs"><%= game.turnovers %></td>
+                <td class="text-right"><%= game.personal_fouls %></td>
+                <td class="text-right"><%= game.points %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 </div>
-<table>
-  <% @home_team_game.player_games.each do |game| %>
-    <tr>
-      <td><%= game.name %></td>
-      <td><%= game.minutes %></td>
-    </tr>
-  <% end %>  
-</table>
