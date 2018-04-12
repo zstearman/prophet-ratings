@@ -21,7 +21,10 @@
       }
       .team-logo{
         margin: auto 0px;
-        padding: 0 15px;
+        padding: 0 8px;
+        @media(min-width: $screen-md-min){
+          padding: 0 15px;
+        }
         .box-score-team-logo{
           width: 100%;
         }
@@ -63,7 +66,10 @@
       }
       .team-logo{
         margin: auto 0px;
-        padding: 0 15px;
+        padding: 0 8px;
+        @media(min-width: $screen-md-min){
+          padding: 0 15px;
+        }
         .box-score-team-logo{
           width: 100%;
         }

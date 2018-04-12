@@ -59,7 +59,7 @@
             <% @away_player_games.each do |game| %>
               <tr class="data-row">
                 <td><%= game.player.jersey %></td>
-                <td><%= game.name %><small> <%= game.player.position %></small></td>
+                <td><%= link_to game.name, '#' %><small> <%= game.player.position %></small></td>
                 <td class="text-right"><%= game.minutes %></td>
                 <td class="text-right"><%= game.field_goals_made.to_s + "-" + game.field_goals_attempted.to_s %></td>
                 <td class="text-right"><%= game.three_pointers_made.to_s + "-" + game.three_pointers_attempted.to_s %></td>
@@ -75,6 +75,36 @@
                 <td class="text-right"><%= game.points %></td>
               </tr>
             <% end %>
+            <tr class="total-row">
+              <th colspan="3">Total</th>
+              <th class="text-right"><%= @away_team_game.field_goals_made.to_s + "-" + @away_team_game.field_goals_attempted.to_s %></th>
+              <th class="text-right"><%= @away_team_game.three_pointers_made.to_s + "-" + @away_team_game.three_pointers_attempted.to_s %></th>
+              <th class="text-right hidden-xs"><%= @away_team_game.free_throws_made.to_s + "-" + @away_team_game.free_throws_attempted.to_s %></th>
+              <th class="text-right hidden-xs"><%= @away_team_game.offensive_rebounds %></th>
+              <th class="text-right hidden-xs"><%= @away_team_game.defensive_rebounds %></th>
+              <th class="text-right"><%= @away_team_game.rebounds %></th>
+              <th class="text-right"><%= @away_team_game.assists %></th>
+              <th class="text-right hidden-xs"><%= @away_team_game.steals %></th>
+              <th class="text-right hidden-xs"><%= @away_team_game.blocked_shots %></th>
+              <th class="text-right hidden-xs"><%= @away_team_game.turnovers %></th>
+              <th class="text-right"><%= @away_team_game.personal_fouls %></th>
+              <th class="text-right"><%= @away_team_game.points %></th>
+            </tr>
+            <tr class="total-row">
+              <th colspan="3"></th>
+              <th class="text-right"><%= @away_team_game.field_goals_percentage.to_s + "%" %></th>
+              <th class="text-right"><%= @away_team_game.three_pointers_percentage.to_s + "%" %></th>
+              <th class="text-right hidden-xs"><%= @away_team_game.free_throws_percentage.to_s + "%" %></th>
+              <th class="text-right hidden-xs"></th>
+              <th class="text-right hidden-xs"></th>
+              <th class="text-right"></th>
+              <th class="text-right"></th>
+              <th class="text-right hidden-xs"></th>
+              <th class="text-right hidden-xs"></th>
+              <th class="text-right hidden-xs"></th>
+              <th class="text-right"></th>
+              <th class="text-right"></th>
+            </tr>
           </tbody>
         </table>
       </div>
@@ -103,7 +133,7 @@
             <% @home_player_games.each do |game| %>
               <tr class="data-row">
                 <td><%= game.player.jersey %></td>
-                <td><%= game.name %><small> <%= game.player.position %></small></td>
+                <td><%= link_to game.name, '#' %><small> <%= game.player.position %></small></td>
                 <td class="text-right"><%= game.minutes %></td>
                 <td class="text-right"><%= game.field_goals_made.to_s + "-" + game.field_goals_attempted.to_s %></td>
                 <td class="text-right"><%= game.three_pointers_made.to_s + "-" + game.three_pointers_attempted.to_s %></td>
@@ -119,6 +149,36 @@
                 <td class="text-right"><%= game.points %></td>
               </tr>
             <% end %>
+            <tr class="total-row">
+              <th colspan="3">Total</th>
+              <th class="text-right"><%= @home_team_game.field_goals_made.to_s + "-" + @home_team_game.field_goals_attempted.to_s %></th>
+              <th class="text-right"><%= @home_team_game.three_pointers_made.to_s + "-" + @home_team_game.three_pointers_attempted.to_s %></th>
+              <th class="text-right hidden-xs"><%= @home_team_game.free_throws_made.to_s + "-" + @home_team_game.free_throws_attempted.to_s %></th>
+              <th class="text-right hidden-xs"><%= @home_team_game.offensive_rebounds %></th>
+              <th class="text-right hidden-xs"><%= @home_team_game.defensive_rebounds %></th>
+              <th class="text-right"><%= @home_team_game.rebounds %></th>
+              <th class="text-right"><%= @home_team_game.assists %></th>
+              <th class="text-right hidden-xs"><%= @home_team_game.steals %></th>
+              <th class="text-right hidden-xs"><%= @home_team_game.blocked_shots %></th>
+              <th class="text-right hidden-xs"><%= @home_team_game.turnovers %></th>
+              <th class="text-right"><%= @home_team_game.personal_fouls %></th>
+              <th class="text-right"><%= @home_team_game.points %></th>
+            </tr>
+            <tr class="total-row">
+              <th colspan="3"></th>
+              <th class="text-right"><%= @home_team_game.field_goals_percentage.to_s + "%" %></th>
+              <th class="text-right"><%= @home_team_game.three_pointers_percentage.to_s + "%" %></th>
+              <th class="text-right hidden-xs"><%= @home_team_game.free_throws_percentage.to_s + "%" %></th>
+              <th class="text-right hidden-xs"></th>
+              <th class="text-right hidden-xs"></th>
+              <th class="text-right"></th>
+              <th class="text-right"></th>
+              <th class="text-right hidden-xs"></th>
+              <th class="text-right hidden-xs"></th>
+              <th class="text-right hidden-xs"></th>
+              <th class="text-right"></th>
+              <th class="text-right"></th>
+            </tr>
           </tbody>
         </table>
       </div>
