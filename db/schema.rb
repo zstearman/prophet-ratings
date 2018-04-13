@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180412024246) do
+ActiveRecord::Schema.define(version: 20180413135325) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -194,6 +194,10 @@ ActiveRecord::Schema.define(version: 20180412024246) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.decimal "p_rtg"
+    t.integer "p_rank"
+    t.integer "po_rank"
+    t.integer "pd_rank"
+    t.integer "pt_rank"
     t.index ["team_season_id"], name: "index_prophet_ratings_on_team_season_id"
   end
 
@@ -337,6 +341,8 @@ ActiveRecord::Schema.define(version: 20180412024246) do
     t.bigint "conference_id"
     t.integer "global_team_id"
     t.integer "ap_rank"
+    t.decimal "p_rtg"
+    t.integer "p_rank"
     t.index ["conference_id"], name: "index_teams_on_conference_id"
     t.index ["global_team_id"], name: "index_teams_on_global_team_id"
     t.index ["key"], name: "index_teams_on_key", unique: true

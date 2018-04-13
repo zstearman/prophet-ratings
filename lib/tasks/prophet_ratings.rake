@@ -80,6 +80,25 @@ namespace :prophet_ratings do
         end
       end
     end
+    
+    # Here we can do additional calculations after the ratings are settled.
+    # Or we can simply run prophet_ratings:additional_calcs
   end
 
+  desc "Generate Prophet Ratings after all tables are added."
+  task additional_calcs: :environment do
+    @season = Season.find_by(current: true)
+    @team_seasons = TeamSeason.where(season: @season)
+    @team_seasons.each do |season|
+      @prophet_rating = season.prophet_rating
+      @prtg = @prophet_rating.p_rtg
+      rank = ProphetRating.where( "p_rtg" + " > ?", @prtg).count + 1
+      @team = season.team
+      @team.p_rtg = @prtg
+      @team.p_rank = rank
+      @prophet_rating.p_rank = rank
+      @team.save
+      @prophet_rating.save
+    end
+  end
 end
