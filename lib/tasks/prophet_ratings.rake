@@ -90,6 +90,16 @@ namespace :prophet_ratings do
     @season = Season.find_by(current: true)
     @team_seasons = TeamSeason.where(season: @season)
     @team_seasons.each do |season|
+      season.team_game.all.each do |team_game|
+        game = team_game.game
+        if team_game.is_game_over == true
+          if team_game.team_key == game.home_key
+            # work on home games
+          else
+            # work on away games
+          end
+        end
+      end
       @prophet_rating = season.prophet_rating
       @prtg = @prophet_rating.p_rtg
       rank = ProphetRating.where( "p_rtg" + " > ?", @prtg).count + 1
